@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta name="theme-color" content="#030716" />
+  <title>YTC Galaxy Memories</title>
+
+  <!-- Three.js từ CDN. Project có thể mở trực tiếp bằng index.html. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <!-- Manifest được tạo bởi update-images.mjs. Không chứa private key. -->
+  <script src="./images.js"></script>
+   <!--====== Favicon Icon ======-->
+  <link rel="shortcut icon" href="./favicon.png" type="image/png" />
+
+
+  <style>
+    :root{
+      --bg:#030716;
+      --panel:rgba(5,10,28,.58);
+      --line:rgba(129,176,255,.20);
+      --text:#f4f7ff;
+      --muted:#93a4c6;
+      --gold:#f6c55c;
+      --blue:#6e9cff;
+      --blue2:#49d7ff;
+    }
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text)}
+    body{user-select:none}
+    canvas#galaxy{position:fixed;inset:0;width:100%;height:100%;display:block}
+    .vignette{position:fixed;inset:0;pointer-events:none;z-index:2;background:radial-gradient(circle at 50% 45%,transparent 22%,rgba(0,0,0,.12) 56%,rgba(0,0,0,.64) 100%),linear-gradient(180deg,rgba(8,18,48,.12),transparent 30%,rgba(0,0,0,.18))}
+    .hud{position:fixed;inset:0;z-index:5;pointer-events:none}
+    .topbar{position:absolute;top:22px;left:24px;right:24px;display:flex;justify-content:space-between;align-items:flex-start;gap:18px}
+    .brand{max-width:430px;padding:14px 16px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,rgba(8,16,42,.72),rgba(3,7,22,.36));backdrop-filter:blur(16px);box-shadow:0 16px 50px rgba(0,0,0,.25)}
+    .eyebrow{font-size:11px;letter-spacing:.28em;color:#9fb7e9;text-transform:uppercase;margin-bottom:7px}
+    .brand h1{font-size:clamp(20px,2.3vw,34px);line-height:1;margin:0;font-weight:800;letter-spacing:-.04em}
+    .brand h1 span{color:var(--gold)}
+    .brand p{display:none}
+    .actions{display:flex;gap:8px;pointer-events:auto;flex-wrap:wrap;justify-content:flex-end}
+    button{appearance:none;border:1px solid var(--line);background:rgba(8,14,35,.66);color:var(--text);padding:10px 13px;border-radius:999px;font-weight:650;font-size:12px;letter-spacing:.02em;cursor:pointer;backdrop-filter:blur(12px);transition:.2s ease;box-shadow:0 10px 30px rgba(0,0,0,.16)}
+    button:hover{transform:translateY(-1px);border-color:rgba(246,197,92,.54);background:rgba(14,24,58,.78)}
+    button.gold{border-color:rgba(246,197,92,.42);color:#ffe7aa}
+    button.active{background:rgba(246,197,92,.16);border-color:rgba(246,197,92,.72);color:#ffe9b4}
+    .timeline{max-width:calc(100vw - 32px);overflow-x:auto;position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:9px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(5,10,27,.62);backdrop-filter:blur(16px);pointer-events:auto}
+    .timeline button{flex-shrink:0;width:38px;height:38px;padding:0;display:grid;place-items:center;font-size:11px}
+    .timeline .home{width:auto;padding:0 13px}
+    .legend{position:absolute;right:24px;bottom:22px;max-width:285px;padding:12px 14px;border:1px solid var(--line);border-radius:16px;background:rgba(5,10,27,.52);backdrop-filter:blur(14px);color:var(--muted);font-size:11px;line-height:1.55}
+    .legend b{color:#eaf0ff}
+    .status{position:absolute;left:50%;top:24px;transform:translateX(-50%);padding:9px 13px;border:1px solid rgba(110,156,255,.22);border-radius:999px;background:rgba(4,9,25,.42);backdrop-filter:blur(12px);font-size:11px;color:#adc2ef;letter-spacing:.12em;text-transform:uppercase;opacity:0;transition:.3s ease}
+    .status.show{opacity:1}
+    .intro{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 40%,rgba(48,89,185,.28),transparent 34%),radial-gradient(circle at 63% 45%,rgba(246,197,92,.09),transparent 22%),rgba(1,4,14,.82);backdrop-filter:blur(12px);transition:.75s cubic-bezier(.2,.8,.2,1)}
+    .intro.hide{opacity:0;pointer-events:none;transform:scale(1.03)}
+    .intro-card{text-align:center;max-width:720px}
+    .orb{width:92px;height:92px;border-radius:50%;margin:0 auto 24px;position:relative;border:1px solid rgba(246,197,92,.42);box-shadow:0 0 60px rgba(246,197,92,.12),inset 0 0 40px rgba(78,132,255,.18)}
+    .orb:before,.orb:after{content:"";position:absolute;inset:18px;border:2px solid var(--gold);border-radius:50% 50% 10% 50%;transform:rotate(45deg);opacity:.75}
+    .orb:after{transform:rotate(-45deg);border-color:#7ba0ff}
+    .intro .small{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#a7bbe8;margin-bottom:10px}
+    .intro h2{font-size:clamp(36px,7vw,76px);line-height:.94;letter-spacing:-.055em;margin:0}
+    .intro h2 span{color:var(--gold)}
+    .intro p{max-width:590px;margin:20px auto 24px;line-height:1.7;color:#aebbd6;font-size:14px}
+    .intro button{font-size:13px;padding:13px 18px;background:linear-gradient(135deg,rgba(246,197,92,.18),rgba(74,118,255,.18));border-color:rgba(246,197,92,.48)}
+    .modal{position:fixed;inset:0;z-index:40;display:none;place-items:center;padding:22px;background:rgba(0,2,10,.76);backdrop-filter:blur(18px)}
+    .modal.show{display:grid}
+    .modal-card{width:min(980px,94vw);max-height:88vh;border:1px solid rgba(126,168,255,.24);border-radius:24px;overflow:hidden;background:#050a1a;box-shadow:0 34px 100px rgba(0,0,0,.65)}
+    .modal-media{aspect-ratio:16/9;background:#02040c;display:grid;place-items:center;overflow:hidden;position:relative}
+    .modal-media img,.modal-media video{width:100%;height:100%;object-fit:contain;display:block}
+    .modal-foot{padding:15px 17px;display:flex;justify-content:space-between;gap:14px;align-items:center}
+    .meta strong{display:block;font-size:16px}.meta span{font-size:12px;color:var(--muted)}
+    .modal-close{pointer-events:auto}
+    .modal-foot a,.source-panel a{color:#ffe0a0;font-size:12px}
+    /* Memory viewer: chỉ hiển thị media đúng tỉ lệ + nút đóng. */
+    #modal{padding:16px;background:rgba(0,2,10,.86)}
+    #modal .modal-card{position:relative;width:auto;max-width:96vw;max-height:94vh;border:0;border-radius:0;overflow:visible;background:transparent;box-shadow:none}
+    #modal .modal-media{width:auto;height:auto;max-width:96vw;max-height:92vh;aspect-ratio:auto;background:transparent;display:flex;align-items:center;justify-content:center;overflow:visible}
+    #modal .modal-media img,#modal .modal-media video{width:auto;height:auto;max-width:96vw;max-height:92vh;object-fit:contain;display:block;border-radius:12px}
+    #modal .modal-close{position:absolute;top:12px;right:12px;z-index:3;padding:10px 14px;background:rgba(3,8,23,.88);border-color:rgba(255,255,255,.28);box-shadow:0 8px 30px rgba(0,0,0,.45)}
+    .tip{max-width:min(420px,85vw);overflow:hidden;text-overflow:ellipsis;position:fixed;z-index:7;pointer-events:none;display:none;padding:8px 10px;border-radius:10px;background:rgba(3,8,23,.9);border:1px solid rgba(130,171,255,.26);font-size:11px;color:#dfe8ff;transform:translate(14px,14px);white-space:nowrap}
+    .fatal{position:fixed;inset:0;z-index:99;background:#030716;display:none;place-items:center;padding:24px;text-align:center}.fatal.show{display:grid}.fatal div{max-width:560px}.fatal h2{margin:0 0 10px}.fatal p{color:#aebbd6;line-height:1.6}
+    .source-panel{padding:24px;overflow-y:auto;max-height:88vh;width:min(650px,94vw)}
+    .source-panel h2{margin-top:0}.source-panel p,.source-panel li{font-size:13px;line-height:1.65;color:#adc2df}.source-panel code{user-select:text;color:#ffe0a0}.source-panel .path{display:block;padding:9px 11px;border:1px solid rgba(129,176,255,.18);border-radius:10px;background:#081126;margin:10px 0;color:#dce8ff;user-select:text;word-break:break-all}.source-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.source-actions button{pointer-events:auto}
+    #sourceMessage{white-space:pre-wrap;letter-spacing:0;user-select:text}
+    .load-progress{position:fixed;left:24px;bottom:82px;z-index:8;max-width:calc(100vw - 48px);padding:8px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(3,8,23,.8);color:#a9c7ee;font-size:11px;pointer-events:none}
+    @media (max-width:760px){.topbar{top:12px;left:12px;right:12px}.brand{max-width:52vw;padding:11px 12px}.brand p{display:none}.actions{max-width:150px}.actions button:not(.gold){display:none}.legend{display:none}.timeline{bottom:12px;max-width:calc(100vw - 24px);justify-content:flex-start}.timeline button{flex:0 0 34px;width:34px;height:34px}.timeline .home{flex-basis:auto}.status{top:auto;bottom:66px;max-width:90vw;text-align:center}.modal-foot{flex-wrap:wrap}}
+  </style>
+</head>
+<body>
+  <canvas id="galaxy"></canvas>
+  <div class="vignette"></div>
+
+  <div class="hud">
+    <div class="topbar">
+      <div class="brand">
+        <div class="eyebrow">YTC • ANNIVERSARY EXPERIENCE</div>
+        <h1>GALAXY <span>MEMORIES</span></h1>
+        <p>Đang đọc ký ức. Kéo để xoay, cuộn để tiến/lùi, click để khám phá.</p>
+      </div>
+      <div class="actions">
+        <button id="journeyBtn" class="gold">🚀 AUTO JOURNEY</button>
+        <button id="sourceBtn" class="gold">☁</button>
+        <button id="resetBtn">↺ VỀ TÂM</button>
+      </div>
+    </div>
+
+    <div id="status" class="status">Đang kết nối…</div>
+    <div class="timeline"><button class="home" id="homeBtn">∞</button></div>
+    <div class="legend"><b>Điều khiển</b><br>Chuột trái: xoay • Scroll: zoom • Chuột phải: pan<br>Mobile: kéo 1 ngón • pinch 2 ngón • chạm để mở</div>
+  </div>
+
+  <div id="loadProgress" class="load-progress" role="status" aria-live="polite" hidden></div>
+  <div id="tip" class="tip"></div>
+
+  <div id="intro" class="intro">
+    <div class="intro-card">
+      <div class="orb"></div>
+      <div class="small">every memory • one universe</div><br>
+      <h2>DU HÀNH QUA<br><br><span>NHỮNG MIỀN KÝ ỨC</span></h2>
+      <p>Đang dựng các vùng ký ức…</p><br><br><br>
+      <button id="enterBtn">✦ BẮT ĐẦU HÀNH TRÌNH ✦</button>
+    </div>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-card">
+      <div id="modalMedia" class="modal-media"></div>
+      <button id="modalClose" class="modal-close">ĐÓNG ×</button>
+    </div>
+  </div>
+
+  <div id="sourceModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="sourceHeading">
+    <div class="modal-card source-panel">
+      <h2 id="sourceHeading">Kho ký ức ImageKit</h2>
+      <p>Project đang dùng endpoint và thư mục:</p>
+      <span class="path">https://ik.imagekit.io/akf/YTC_Memories/</span>
+      <p id="sourceMessage">Đang đọc manifest…</p>
+      <div class="source-actions">
+        <button id="reloadManifest" class="gold">↻ NẠP LẠI MANIFEST</button>
+        <button id="sourceClose">ĐÓNG</button>
+      </div>
+      <details style="margin-top:18px"><summary>Cách thêm ảnh mới</summary>
+        <ol>
+          <li>Upload ảnh vào <code>YTC_Memories/1</code> … <code>YTC_Memories/8</code>. Giữ nguyên tên file, không cần đổi tên.</li>
+          <li>Chạy <code>UPDATE-IMAGES.bat</code> trên Windows.</li>
+          <li>Script tự lấy mọi tên file từ ImageKit và cập nhật <code>images.js</code> + <code>images.json</code>.</li>
+          <li>Upload lại project lên host. Không đưa file <code>imagekit.private.json</code> lên host.</li>
+        </ol>
+      </details>
+    </div>
+  </div>
+
+  <div id="fatal" class="fatal"><div><h2>Không tải được Three.js</h2><p>Hãy kiểm tra Internet rồi mở lại <b>index.html</b>.</p></div></div>
+
+<script>
+(function(){
+  'use strict';
+  if(!window.THREE || !THREE.OrbitControls){document.getElementById('fatal').classList.add('show');return;}
+
+  const CONFIG={
+    imagekit:{endpoint:'https://ik.imagekit.io/akf',rootPath:'/YTC_Memories'},
+    // LOGO TRUNG TÂM: sau này chỉ cần dán direct URL ảnh logo vào đây, ví dụ:
+    // coreLogoUrl:'https://ik.imagekit.io/akf/YTC_Memories/logo-clb.png',
+    coreLogoUrl:'https://ik.imagekit.io/akf/LogoYTC.png',
+    cameraStart:[0,8,78],
+    colors:{blue:'#76a4ff',cyan:'#57d8ff',gold:'#f6c55c'},
+    thumb:{width:640,quality:72,concurrency:5}
+  };
+
+  const canvas=document.getElementById('galaxy');
+  const scene=new THREE.Scene();scene.background=new THREE.Color(0x020611);scene.fog=new THREE.FogExp2(0x020611,.0025);
+  const camera=new THREE.PerspectiveCamera(58,innerWidth/innerHeight,.1,900);camera.position.set(...CONFIG.cameraStart);
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.8));renderer.setSize(innerWidth,innerHeight);renderer.outputEncoding=THREE.sRGBEncoding;
+  const controls=new THREE.OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.055;controls.enablePan=true;controls.minDistance=5;controls.maxDistance=170;controls.rotateSpeed=.42;controls.zoomSpeed=.72;controls.panSpeed=.65;controls.target.set(0,0,0);controls.mouseButtons={LEFT:THREE.MOUSE.ROTATE,MIDDLE:THREE.MOUSE.DOLLY,RIGHT:THREE.MOUSE.PAN};
+
+  const cards=[],groups=[],clusterObjects=[];let universeRadius=42,sourceGeneration=0,selectedGroupId=null,hovered=null,flyState=null,pointerDown=null,journeyToken=0,journeyRunning=false;
+  const raycaster=new THREE.Raycaster(),mouse=new THREE.Vector2(),clock=new THREE.Clock();
+  const GOLD=new THREE.Color(CONFIG.colors.gold),BLUE=new THREE.Color(CONFIG.colors.blue),CYAN=new THREE.Color(CONFIG.colors.cyan);
+  const rand=(min,max)=>min+Math.random()*(max-min);const easeInOutCubic=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+  function makeTextSprite(text,sub=''){
+    const c=document.createElement('canvas');c.width=1024;c.height=300;const x=c.getContext('2d');const g=x.createLinearGradient(0,0,c.width,0);g.addColorStop(0,'rgba(91,142,255,.0)');g.addColorStop(.5,'rgba(91,142,255,.14)');g.addColorStop(1,'rgba(246,197,92,.0)');x.fillStyle=g;x.fillRect(0,40,c.width,220);x.textAlign='center';x.textBaseline='middle';x.shadowColor='rgba(111,166,255,.8)';x.shadowBlur=28;x.font='800 92px Arial';x.fillStyle='#eef4ff';x.fillText(text,512,125);if(sub){x.shadowBlur=12;x.font='600 28px Arial';x.fillStyle='#f6c55c';x.fillText(sub,512,210)}const tex=new THREE.CanvasTexture(c);tex.encoding=THREE.sRGBEncoding;const mat=new THREE.SpriteMaterial({map:tex,transparent:true,depthWrite:false});const s=new THREE.Sprite(mat);s.scale.set(14,4.1,1);return s;
+  }
+  function makeStars(count=7000,radius=320){const geo=new THREE.BufferGeometry(),pos=new Float32Array(count*3),col=new Float32Array(count*3);for(let i=0;i<count;i++){const r=Math.pow(Math.random(),.35)*radius,theta=Math.random()*Math.PI*2,phi=Math.acos(rand(-1,1));pos[i*3]=r*Math.sin(phi)*Math.cos(theta);pos[i*3+1]=r*Math.cos(phi);pos[i*3+2]=r*Math.sin(phi)*Math.sin(theta);const t=Math.random(),color=t>.92?GOLD:(t>.66?CYAN:new THREE.Color(0xdde8ff));col[i*3]=color.r;col[i*3+1]=color.g;col[i*3+2]=color.b}geo.setAttribute('position',new THREE.BufferAttribute(pos,3));geo.setAttribute('color',new THREE.BufferAttribute(col,3));const mat=new THREE.PointsMaterial({size:.34,vertexColors:true,transparent:true,opacity:.82,sizeAttenuation:true,depthWrite:false});const pts=new THREE.Points(geo,mat);scene.add(pts);return pts}
+  function makeNebula(center,year){const count=260,geo=new THREE.BufferGeometry(),pos=new Float32Array(count*3),col=new Float32Array(count*3);for(let i=0;i<count;i++){const a=Math.random()*Math.PI*2,rr=Math.pow(Math.random(),.62)*11.5,arm=(i%3)*2.08,px=Math.cos(a+arm)*rr+rand(-1.4,1.4),pz=Math.sin(a+arm)*rr*.55+rand(-1.4,1.4),py=rand(-3.2,3.2)*(1-rr/16);pos[i*3]=center.x+px;pos[i*3+1]=center.y+py;pos[i*3+2]=center.z+pz;const color=(i+year)%7===0?GOLD:(year%2?BLUE:CYAN);col[i*3]=color.r;col[i*3+1]=color.g;col[i*3+2]=color.b}geo.setAttribute('position',new THREE.BufferAttribute(pos,3));geo.setAttribute('color',new THREE.BufferAttribute(col,3));const mat=new THREE.PointsMaterial({size:.48,vertexColors:true,transparent:true,opacity:.6,depthWrite:false});const pts=new THREE.Points(geo,mat);scene.add(pts);return pts}
+
+  const bgStars=makeStars();
+  const core=new THREE.Group();
+  const ring1=new THREE.Mesh(new THREE.TorusGeometry(5.5,.08,12,160),new THREE.MeshBasicMaterial({color:0xf6c55c,transparent:true,opacity:.68}));ring1.rotation.x=Math.PI/2.7;
+  const ring2=new THREE.Mesh(new THREE.TorusGeometry(7.1,.045,10,160),new THREE.MeshBasicMaterial({color:0x6e9cff,transparent:true,opacity:.42}));ring2.rotation.x=Math.PI/2;ring2.rotation.y=.8;
+
+  // Logo tròn ở tâm. Khi CONFIG.coreLogoUrl còn trống sẽ hiện placeholder "LOGO CLB".
+  function makeCoreLogo(){
+    const url=String(CONFIG.coreLogoUrl||'').trim();
+    let texture;
+    if(url){
+      texture=new THREE.TextureLoader().load(url);
+      texture.encoding=THREE.sRGBEncoding;
+    }else{
+      const c=document.createElement('canvas');c.width=512;c.height=512;const x=c.getContext('2d');
+      x.clearRect(0,0,512,512);x.beginPath();x.arc(256,256,228,0,Math.PI*2);x.fillStyle='rgba(18,43,82,.94)';x.fill();
+      x.lineWidth=10;x.strokeStyle='rgba(246,197,92,.75)';x.stroke();
+      x.textAlign='center';x.textBaseline='middle';x.fillStyle='#f4f7ff';x.font='800 58px Arial';x.fillText('LOGO',256,232);
+      x.fillStyle='#f6c55c';x.font='700 34px Arial';x.fillText('CLB',256,300);
+      texture=new THREE.CanvasTexture(c);texture.encoding=THREE.sRGBEncoding;
+    }
+    const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));
+    sprite.scale.set(5.6,5.6,1);sprite.userData.baseScale=sprite.scale.clone();return sprite;
+  }
+  const coreLogo=makeCoreLogo();
+  const coreLabel=makeTextSprite('∞','OUR MEMORIES');coreLabel.position.set(0,5.5,0);coreLabel.scale.set(10,3.1,1);core.add(ring1,ring2,coreLogo,coreLabel);scene.add(core);
+
+  function flyTo(position,target,duration=1050){if(flyState&&flyState.resolve)flyState.resolve();return new Promise(resolve=>{flyState={fromPos:camera.position.clone(),toPos:position.clone(),fromTarget:controls.target.clone(),toTarget:target.clone(),start:performance.now(),duration,resolve}})}
+  function updateFly(){if(!flyState)return;const t=Math.min(1,(performance.now()-flyState.start)/flyState.duration),e=easeInOutCubic(t);camera.position.lerpVectors(flyState.fromPos,flyState.toPos,e);controls.target.lerpVectors(flyState.fromTarget,flyState.toTarget,e);if(t>=1){const done=flyState.resolve;flyState=null;done&&done()}}
+  function gotoCore(){selectedGroupId=null;stopJourney();document.querySelectorAll('.timeline [data-year]').forEach(b=>b.classList.remove('active'));showStatus('Memory Core');return flyTo(new THREE.Vector3(...CONFIG.cameraStart),new THREE.Vector3(0,0,0),1100)}
+  function gotoYear(year,fromJourney=false){if(!fromJourney)stopJourney();const group=groups.find(g=>g.id===String(year));if(!group)return Promise.resolve();selectedGroupId=group.id;const center=group.center,outward=center.clone().normalize(),pos=center.clone().add(outward.multiplyScalar(15)).add(new THREE.Vector3(0,3.5,0));showStatus('Đang tới '+group.label);document.querySelectorAll('.timeline [data-year]').forEach(b=>b.classList.toggle('active',b.dataset.year===String(year)));return flyTo(pos,center,1000)}
+  function focusCard(card){stopJourney();const pos=card.position.clone(),outward=card.position.clone().normalize().multiplyScalar(6.3),camPos=pos.clone().add(outward).add(new THREE.Vector3(0,1.2,0)),generation=sourceGeneration;showStatus(`${card.userData.groupLabel} • ${card.userData.isVideo?'Video':'Photo'}`);flyTo(camPos,pos,760).then(()=>{if(generation===sourceGeneration&&cards.includes(card))openMemory(card)})}
+
+  const modal=document.getElementById('modal'),modalMedia=document.getElementById('modalMedia');
+  function openMemory(card){const file=card.userData.mediaFile;modalMedia.innerHTML='';if(card.userData.isVideo){const video=document.createElement('video');video.src=file.url;video.controls=true;video.autoplay=true;video.playsInline=true;video.preload='metadata';modalMedia.appendChild(video)}else{const img=document.createElement('img');img.src=file.url;img.alt='Ảnh kỷ niệm';img.decoding='async';modalMedia.appendChild(img)}modal.classList.add('show')}
+  function closeModal(){const v=modalMedia.querySelector('video');if(v){v.pause();v.removeAttribute('src');v.load()}modal.classList.remove('show');modalMedia.innerHTML=''}
+  document.getElementById('modalClose').onclick=closeModal;modal.addEventListener('pointerdown',e=>{if(e.target===modal)closeModal()});
+
+  function setMouse(e){const rect=renderer.domElement.getBoundingClientRect();mouse.x=((e.clientX-rect.left)/rect.width)*2-1;mouse.y=-((e.clientY-rect.top)/rect.height)*2+1}
+  function hitTest(e){setMouse(e);raycaster.setFromCamera(mouse,camera);const hit=raycaster.intersectObjects(cards,true);if(!hit.length)return null;let obj=hit[0].object;while(obj&&obj.userData.kind!=='memory')obj=obj.parent;return obj||null}
+  function setCardTint(card,color){if(!card)return;card.material.color.set(color);if(card.userData.backFace)card.userData.backFace.material.color.set(color)}
+  const tip=document.getElementById('tip');
+  renderer.domElement.addEventListener('pointermove',e=>{const hit=hitTest(e);if(hovered!==hit){if(hovered){hovered.scale.set(1,1,1);setCardTint(hovered,0xffffff)}hovered=hit;if(hovered){hovered.scale.set(1.12,1.12,1.12);setCardTint(hovered,0xffefc2);document.body.style.cursor='pointer'}else document.body.style.cursor=''}if(hit){tip.style.display='block';tip.style.left=e.clientX+'px';tip.style.top=e.clientY+'px';tip.textContent=`${hit.userData.groupLabel} • CLICK ĐỂ MỞ`}else tip.style.display='none'});
+  renderer.domElement.addEventListener('pointerdown',e=>{stopJourney();pointerDown={x:e.clientX,y:e.clientY}});renderer.domElement.addEventListener('pointerup',e=>{if(!pointerDown)return;const d=Math.hypot(e.clientX-pointerDown.x,e.clientY-pointerDown.y);pointerDown=null;if(d>7)return;const hit=hitTest(e);if(hit)focusCard(hit)});renderer.domElement.addEventListener('contextmenu',e=>e.preventDefault());
+
+  const journeyBtn=document.getElementById('journeyBtn');
+  function stopJourney(){if(!journeyRunning)return;journeyRunning=false;journeyToken++;journeyBtn.classList.remove('active');journeyBtn.textContent='🚀 AUTO JOURNEY'}
+  async function startJourney(){
+    if(journeyRunning){stopJourney();return}
+    if(!groups.length){showStatus('Chưa có vùng ký ức');return}
+    journeyRunning=true;const token=++journeyToken;journeyBtn.classList.add('active');journeyBtn.textContent='■ DỪNG JOURNEY';
+    while(journeyRunning&&token===journeyToken){
+      for(const group of [...groups]){
+        if(!journeyRunning||token!==journeyToken)return;
+        await gotoYear(group.id,true);
+        if(!journeyRunning||token!==journeyToken)return;
+        await sleep(1250);
+      }
+      // Hết vùng cuối sẽ quay lại vùng 1 và tiếp tục lặp cho tới khi người dùng bấm DỪNG.
+      if(journeyRunning&&token===journeyToken)await sleep(350);
+    }
+  }
+  journeyBtn.onclick=startJourney;
+
+  const status=document.getElementById('status');let statusTimer;function showStatus(text){status.textContent=text;status.classList.add('show');clearTimeout(statusTimer);statusTimer=setTimeout(()=>status.classList.remove('show'),1800)}
+  document.getElementById('homeBtn').onclick=gotoCore;document.getElementById('resetBtn').onclick=gotoCore;document.getElementById('enterBtn').onclick=()=>{document.getElementById('intro').classList.add('hide');showStatus('Kéo chuột để khám phá thiên hà');setTimeout(()=>document.getElementById('intro').style.display='none',780)};
+
+  const sourceModal=document.getElementById('sourceModal'),sourceMessage=document.getElementById('sourceMessage'),loadProgress=document.getElementById('loadProgress');
+  document.getElementById('sourceBtn').onclick=()=>sourceModal.classList.add('show');document.getElementById('sourceClose').onclick=()=>sourceModal.classList.remove('show');sourceModal.addEventListener('pointerdown',e=>{if(e.target===sourceModal)sourceModal.classList.remove('show')});document.getElementById('reloadManifest').onclick=()=>location.reload();
+
+  function clearUniverse(){sourceGeneration++;selectedGroupId=null;stopJourney();closeModal();if(flyState){flyState.resolve();flyState=null}for(const card of cards.splice(0)){card.material.map?.dispose();card.traverse(o=>{o.geometry?.dispose();o.material?.dispose()});scene.remove(card)}for(const o of clusterObjects.splice(0)){o.geometry?.dispose();o.material?.map?.dispose();o.material?.dispose();scene.remove(o)}groups.length=0;hovered=null;tip.style.display='none';document.querySelectorAll('.timeline [data-year]').forEach(b=>b.remove())}
+  function buildGroups(descriptors,files){const radius=Math.max(32,descriptors.length*6.5);universeRadius=radius+20;descriptors.forEach((g,i)=>{const a=i/Math.max(1,descriptors.length)*Math.PI*2-.32,center=new THREE.Vector3(Math.cos(a)*radius,Math.sin(a*2)*7,Math.sin(a)*radius),group={...g,center};groups.push(group);const nebula=makeNebula(center,i+1);clusterObjects.push(nebula);const count=files.filter(f=>f.groupId===g.id).length,label=makeTextSprite(g.label,count+' KÝ ỨC');label.position.copy(center).add(new THREE.Vector3(0,12,0));label.scale.set(10,3,1);scene.add(label);clusterObjects.push(label);const button=document.createElement('button');button.dataset.year=g.id;button.textContent=g.name;button.title=g.label+' • '+count+' ký ức';button.style.minWidth='38px';button.style.width='auto';button.style.padding='0 12px';button.onclick=()=>gotoYear(g.id);document.querySelector('.timeline').appendChild(button)});const distance=Math.max(90,(universeRadius+50)*2.25);CONFIG.cameraStart=[0,distance*.22,distance];camera.far=Math.max(900,distance*5);camera.updateProjectionMatrix();controls.maxDistance=distance*2;scene.fog.density=Math.min(.0025,.25/distance);camera.position.set(...CONFIG.cameraStart);controls.target.set(0,0,0);const old=coreLabel.material.map,updated=makeTextSprite('∞',groups.length+' VÙNG KÝ ỨC');coreLabel.material.map=updated.material.map;updated.material.dispose();old.dispose();document.querySelector('.brand p').textContent=`${groups.length} vùng ký ức • ${files.length} ảnh/video từ ImageKit. Kéo để xoay, cuộn để zoom, click để mở.`}
+  function seededRandom(key){let n=2166136261;for(const c of key)n=Math.imul(n^c.charCodeAt(0),16777619);return()=>{n|=0;n=n+0x6D2B79F5|0;let t=Math.imul(n^n>>>15,1|n);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+  function makeCard(file,index,total){const c=document.createElement('canvas');c.width=512;c.height=332;const x=c.getContext('2d');x.fillStyle='#07142c';x.fillRect(0,0,512,332);const video=file.mimeType?.startsWith('video/')||file.fileType==='video';x.textAlign='center';x.textBaseline='middle';x.fillStyle='#f6c55c';x.font='bold 56px Arial';x.fillText(video?'▶':'◇',256,166);const texture=new THREE.CanvasTexture(c);texture.encoding=THREE.sRGBEncoding;const mat=new THREE.MeshBasicMaterial({map:texture,side:THREE.FrontSide}),card=new THREE.Mesh(new THREE.PlaneGeometry(4.9,3.18),mat),back=new THREE.Mesh(card.geometry.clone(),mat.clone());back.rotation.y=Math.PI;back.position.z=-.012;card.add(back);const group=groups.find(g=>g.id===file.groupId),rng=seededRandom(file.id||file.filePath||file.url);if(group){const a=index*2.399963229728653+.4,r=3+Math.sqrt((index+.5)/Math.max(total,1))*8;card.position.copy(group.center).add(new THREE.Vector3(Math.cos(a)*r,(rng()-.5)*11,Math.sin(a)*r))}else{const a=rng()*Math.PI*2,r=universeRadius+18+rng()*24,y=(rng()-.5)*36;card.position.set(Math.cos(a)*r,y,Math.sin(a)*r)}card.lookAt(0,0,0);card.userData={kind:'memory',year:file.groupId,groupLabel:group?.label||'KÝ ỨC TỰ DO',index:index+1,title:file.name||'Ký ức',isVideo:video,mediaFile:file,backFace:back,phase:rng()*6.28,drift:.1};cards.push(card);scene.add(card);function caption(){texture.needsUpdate=true}return{file,card,x,texture,caption}}
+
+  function thumbnailUrl(file){if(file.thumbUrl)return file.thumbUrl;if(!file.filePath)return file.url;const path=file.filePath.split('/').map(encodeURIComponent).join('/').replace(/%2F/gi,'/');return `${CONFIG.imagekit.endpoint}/tr:w-${CONFIG.thumb.width},q-${CONFIG.thumb.quality}${path.startsWith('/')?'':'/'}${path}`}
+  async function paintThumbnail(item){if(item.card.userData.isVideo){item.thumbReady=true;return true}try{const img=new Image();img.crossOrigin='anonymous';img.decoding='async';const src=thumbnailUrl(item.file);await new Promise((resolve,reject)=>{const timer=setTimeout(()=>{img.src='';reject(Error('timeout'))},18000);img.onload=()=>{clearTimeout(timer);resolve()};img.onerror=()=>{clearTimeout(timer);reject(Error('load error'))};img.src=src});const scale=Math.min(512/img.width,332/img.height),w=img.width*scale,h=img.height*scale;item.x.fillStyle='#07142c';item.x.fillRect(0,0,512,332);item.x.drawImage(img,(512-w)/2,(332-h)/2,w,h);item.texture.needsUpdate=true;item.thumbReady=true;return true}catch(e){item.thumbReady=false;return false}}
+  async function fillThumbnails(items,generation){const queue=[...items];let done=0,failed=0;loadProgress.hidden=false;const update=()=>{loadProgress.textContent=`Ảnh xem trước ${done}/${items.length}${failed?` • ${failed} lỗi`:''}`};update();async function worker(){while(queue.length&&generation===sourceGeneration){queue.sort((a,b)=>Number(b.file.groupId===selectedGroupId)-Number(a.file.groupId===selectedGroupId)||a.card.position.distanceToSquared(camera.position)-b.card.position.distanceToSquared(camera.position));const item=queue.shift(),ok=await paintThumbnail(item);done++;if(!ok)failed++;update()}}await Promise.all(Array.from({length:Math.min(CONFIG.thumb.concurrency,Math.max(1,items.length))},worker));loadProgress.textContent=`${items.length-failed}/${items.length} ảnh xem trước • sẵn sàng`;return failed}
+
+  function normalizeManifest(raw){if(!raw||!Array.isArray(raw.files))throw Error('images.js chưa có manifest hợp lệ. Hãy chạy UPDATE-IMAGES.bat.');const files=raw.files.filter(f=>f&&typeof f.url==='string'&&f.url.startsWith('http'));let groups=Array.isArray(raw.groups)?raw.groups.map(g=>({id:String(g.id),name:String(g.name||g.id),label:String(g.label||(/^\d+$/.test(String(g.name||g.id))?'NĂM '+String(g.name||g.id):String(g.name||g.id)))})):[];if(!groups.length){const ids=[...new Set(files.map(f=>f.groupId).filter(v=>v!=null).map(String))].sort((a,b)=>a.localeCompare(b,'vi',{numeric:true}));groups=ids.map(id=>({id,name:id,label:/^\d+$/.test(id)?'NĂM '+id:id}))}const validIds=new Set(groups.map(g=>g.id));for(const f of files){f.groupId=f.groupId==null?null:String(f.groupId);if(f.groupId&&!validIds.has(f.groupId))f.groupId=null;f.id=String(f.id||f.fileId||f.filePath||f.url);f.name=String(f.name||decodeURIComponent((f.filePath||f.url).split('/').pop()||'Ký ức'));f.mimeType=String(f.mimeType||f.mime||((f.url.match(/\.(mp4|webm|mov)(?:\?|$)/i))?'video/mp4':'image/jpeg'))}return{version:Number(raw.version)||1,generatedAt:raw.generatedAt||'',endpoint:raw.endpoint||CONFIG.imagekit.endpoint,rootPath:raw.rootPath||CONFIG.imagekit.rootPath,groups,files}}
+  async function loadManifest(){loadProgress.hidden=false;loadProgress.textContent='Đang dựng thiên hà từ ImageKit…';try{const manifest=normalizeManifest(window.YTC_MEDIA_MANIFEST);clearUniverse();buildGroups(manifest.groups,manifest.files);const items=[];for(const group of [...groups,{id:null}]){const media=manifest.files.filter(f=>f.groupId===group.id);media.forEach((f,i)=>items.push(makeCard(f,i,media.length)))}const rootCount=manifest.files.filter(f=>f.groupId===null).length,when=manifest.generatedAt?new Date(manifest.generatedAt).toLocaleString('vi-VN'):'chưa rõ';document.querySelector('.intro p').textContent=`${groups.length} cụm • ${items.length} media${rootCount?` • ${rootCount} ký ức tự do`:''}. Có thể bắt đầu khám phá ngay trong lúc thumbnail đang tải.`;sourceMessage.textContent=`${groups.length} thư mục • ${items.length} media.\nManifest cập nhật: ${when}.\nKhông cần đổi tên file; tên nào ImageKit đang có thì web dùng nguyên tên đó.`;if(!items.length){document.querySelector('.intro p').textContent='Manifest hiện chưa có ảnh. Chạy UPDATE-IMAGES.bat sau khi upload ảnh lên ImageKit.';loadProgress.textContent='Chưa có ảnh trong manifest';sourceModal.classList.add('show');return}const generation=sourceGeneration,failed=await fillThumbnails(items,generation);showStatus('Đã dựng '+items.length+' ký ức');if(failed)sourceMessage.textContent+=`\n${failed} thumbnail chưa tải được; file gốc vẫn mở được khi click.`}catch(e){loadProgress.textContent='Chưa nạp được manifest • xem ImageKit';document.querySelector('.intro p').textContent='Chưa đọc được danh sách ảnh. Mở ImageKit để xem hướng dẫn cập nhật manifest.';sourceMessage.textContent=e.message;sourceModal.classList.add('show')}}
+
+  loadManifest();
+
+  function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();controls.update();updateFly();core.rotation.y+=.0018;ring1.rotation.z+=.0016;ring2.rotation.z-=.001;coreLogo.scale.copy(coreLogo.userData.baseScale).multiplyScalar(1+Math.sin(t*1.4)*.035);for(const card of cards){const p=card.userData.phase;card.rotation.z+=Math.sin(t*.35+p)*.000012;card.position.y+=Math.sin(t*.42+p)*card.userData.drift*.0008}bgStars.rotation.y+=.000035;renderer.render(scene,camera)}
+  animate();
+  addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,1.8))});
+  addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();stopJourney();sourceModal.classList.remove('show')}});
+})();
+</script>
+</body>
+</html>
