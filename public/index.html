@@ -144,12 +144,27 @@
     }
     @media (hover: hover) {
       .memory-card {
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        transform-origin: center center;
+        transition: transform 0.78s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.35s ease;
       }
       .memory-card:hover {
         border-color: var(--card-color, #38bdf8);
         box-shadow: 0 0 28px var(--card-glow, rgba(56, 189, 248, 0.55)), 0 14px 32px rgba(0, 0, 0, 0.85);
         z-index: 50 !important;
+      }
+      .memory-card.warp-spotlight {
+        z-index: 85 !important;
+        border-color: var(--card-color, #f59e0b);
+        box-shadow: 0 0 55px var(--card-glow, rgba(245, 158, 11, 0.78)), 0 28px 64px rgba(0, 0, 0, 0.92);
+      }
+      .memory-card.warp-spotlight .card-badge {
+        bottom: 6px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%) scale(0.55);
+        transform-origin: bottom center;
+        gap: 12px;
+        padding: 3px 10px;
       }
     }
     .memory-card img {
@@ -6470,6 +6485,10 @@ window.YTC_MEDIA_MANIFEST = {
 
       viewportEl.addEventListener('pointerdown', (e) => {
         if (e.target.closest('button')) return;
+        if (!isMobileDevice && !e.target.closest('.memory-card')) {
+          if (autoWarpTimer) stopAutoWarp(false);
+          else clearWarpSpotlight();
+        }
         activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
         cam.flyAnim = null;
 
@@ -6550,6 +6569,8 @@ window.YTC_MEDIA_MANIFEST = {
 
       viewportEl.addEventListener('wheel', (e) => {
         e.preventDefault();
+        if (autoWarpTimer) stopAutoWarp(false);
+        else clearWarpSpotlight();
         cam.flyAnim = null;
         const zoomFactor = Math.exp(-e.deltaY * 0.0014);
         zoomAtScreenPoint(cam.zoom * zoomFactor, e.clientX, e.clientY);
@@ -7384,17 +7405,76 @@ window.YTC_MEDIA_MANIFEST = {
       });
 
       let autoWarpTimer = null;
+      let activeWarpNode = null;
       const randomWarpBtn = document.getElementById('btn-random-warp');
+
+      function clearWarpSpotlight() {
+        if (!activeWarpNode) return;
+        const prev = activeWarpNode;
+        activeWarpNode = null;
+        if (prev._el) {
+          prev._el.classList.remove('warp-spotlight');
+          if (!isMobileDevice) {
+            prev._el.style.transform = `rotate(${prev.rotation}deg)`;
+          }
+        }
+      }
+
+      function applyPcWarpSpotlight(node, targetZoom) {
+        if (isMobileDevice || !node || !node._el) return;
+        clearWarpSpotlight();
+        activeWarpNode = node;
+
+        const finalW = Math.round(node.w * Number(node.scaleDepth || 1));
+        const finalH = Math.round(node.h * Number(node.scaleDepth || 1));
+        // Enlarge photo to nearly 1/2 of the PC screen (~48% width, ~56% height)
+        const maxScreenW = window.innerWidth * 0.48;
+        const maxScreenH = window.innerHeight * 0.56;
+        const scaleByW = maxScreenW / Math.max(1, finalW * targetZoom);
+        const scaleByH = maxScreenH / Math.max(1, finalH * targetZoom);
+        const warpScale = Math.max(1.75, Math.min(4.2, Math.min(scaleByW, scaleByH)));
+
+        node._el.classList.add('warp-spotlight');
+        node._el.style.transform = `rotate(0deg) scale(${warpScale.toFixed(3)})`;
+
+        // Upgrade to full resolution image in background so 1/2-screen view is crystal clear
+        if (node._imgEl && node.fullUrl && node._imgEl.dataset.hiresLoaded !== '1') {
+          const hiImg = new Image();
+          hiImg.decoding = 'async';
+          hiImg.onload = function() {
+            if (node._imgEl) {
+              node._imgEl.src = node.fullUrl;
+              node._imgEl.dataset.hiresLoaded = '1';
+            }
+          };
+          hiImg.src = node.fullUrl;
+        }
+      }
 
       function stepRandomWarp() {
         const candidates = memoryNodes.filter(isNodeMatchingFilter);
         if (candidates.length === 0) return;
-        const chosen = candidates[Math.floor(Math.random() * candidates.length)];
-        flyTo(chosen.x, chosen.y, 0.78, 1100);
+        let pool = candidates;
+        if (candidates.length > 1 && activeWarpNode) {
+          pool = candidates.filter(n => n.id !== activeWarpNode.id);
+        }
+        const chosen = pool[Math.floor(Math.random() * pool.length)];
+        triggerNodeImageLoad(chosen, true);
+
+        if (isMobileDevice) {
+          // Điện thoại giữ nguyên hoàn toàn như cũ
+          flyTo(chosen.x, chosen.y, 0.78, 1100);
+        } else {
+          // Trên PC: bay tới ảnh và phóng lớn bức ảnh lên gần 1/2 màn hình
+          const pcTargetZoom = 0.82;
+          flyTo(chosen.x, chosen.y, pcTargetZoom, 1050);
+          applyPcWarpSpotlight(chosen, pcTargetZoom);
+        }
         showToast(`Đang du hành tới Mảnh Ký Ức #${chosen.serialNumber} (${chosen.yearMeta.label} · ${chosen.directionText})`);
       }
 
       function stopAutoWarp(showNotification = true) {
+        clearWarpSpotlight();
         if (!autoWarpTimer) return;
         clearInterval(autoWarpTimer);
         autoWarpTimer = null;
@@ -7414,7 +7494,7 @@ window.YTC_MEDIA_MANIFEST = {
           const labelSpan = randomWarpBtn.querySelector('span');
           if (labelSpan) labelSpan.textContent = 'Dừng Du Hành';
           stepRandomWarp();
-          autoWarpTimer = setInterval(stepRandomWarp, 3200);
+          autoWarpTimer = setInterval(stepRandomWarp, isMobileDevice ? 3200 : 3800);
         }
       });
 
