@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Vũ Trụ Ký Ức - Kỷ Niệm 8 Năm CLB Truyền Thông YTC - NTU</title>
+  <meta name="description" content="Khám phá Vũ Trụ Ký Ức kỷ niệm 8 năm thành lập CLB Truyền Thông YTC - NTU | Nơi lưu giữ những khoảnh khắc thanh xuân phân rã ngẫu nhiên khắp 4 hướng vũ trụ thời gian." />
+  <link rel="icon" type="image/png" href="https://ik.imagekit.io/akf/LogoYTC.png?updatedAt=1791206527381" />
+  <link rel="apple-touch-icon" href="https://ik.imagekit.io/akf/LogoYTC.png?updatedAt=1791206527381" />
+  <!-- Open Graph / Link Preview Meta Tags (Facebook, Zalo, Messenger, Discord, Telegram) -->
+  <meta property="og:type" content="website" />
+  <meta property="fb:app_id" content="966242223397117" />
+  <meta property="og:url" content="https://memories-ytc.web.app/" />
+  <meta property="og:site_name" content="CLB Truyền Thông YTC - NTU" />
+  <meta property="og:title" content="Vũ Trụ Ký Ức - Kỷ Niệm 8 Năm CLB Truyền Thông YTC" />
+  <meta property="og:description" content="Du hành qua Đồng Hồ Cát Thời Gian và khám phá 290+ mảnh ký ức rực rỡ suốt hành trình 8 năm của CLB Truyền Thông YTC - NTU khắp 4 hướng vũ trụ." />
+  <meta property="og:image" content="https://memories-ytc.web.app/preview.png" />
+  <meta property="og:image:secure_url" content="https://memories-ytc.web.app/preview.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Vũ Trụ Ký Ức - Kỷ Niệm 8 Năm CLB Truyền Thông YTC - NTU" />
+  <!-- Twitter / X Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Vũ Trụ Ký Ức - Kỷ Niệm 8 Năm CLB Truyền Thông YTC - NTU" />
+  <meta name="twitter:description" content="Du hành qua Đồng Hồ Cát Thời Gian và khám phá những mảnh ký ức rực rỡ suốt hành trình 8 năm của CLB Truyền Thông YTC - NTU khắp 4 hướng vũ trụ." />
+  <meta name="twitter:image" content="https://memories-ytc.web.app/preview.png" />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cosmos: #04060f;
+      --accent-gold: #f59e0b;
+      --accent-cyan: #38bdf8;
+      --accent-rose: #f43f5e;
+      --accent-violet: #a855f7;
+    }
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg-cosmos);
+      font-family: 'Be Vietnam Pro', sans-serif;
+      color: #f8fafc;
+      touch-action: none;
+    }
+    .font-display {
+      font-family: 'Space Grotesk', 'Be Vietnam Pro', sans-serif;
+    }
+
+    /* Glassmorphism panels */
+    .glass-panel {
+      background: rgba(10, 14, 29, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+    }
+    .glass-pill {
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-pill:hover {
+      background: rgba(30, 41, 59, 0.92);
+      border-color: rgba(255, 255, 255, 0.28);
+      transform: translateY(-1px);
+    }
+    .glass-pill.active {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.28), rgba(168, 85, 247, 0.28));
+      border-color: rgba(245, 158, 11, 0.75);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+    }
+
+    /* World Viewport & Transform Layer */
+    #universe-viewport {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      cursor: grab;
+      z-index: 1;
+    }
+    #universe-viewport.dragging {
+      cursor: grabbing;
+    }
+    #starfield-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    #world-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      transform-origin: 0 0;
+      will-change: transform;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Memory Photo Cards in Universe */
+    .memory-card {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: auto;
+      cursor: pointer;
+      border-radius: 14px;
+      padding: 6px;
+      background: rgba(15, 23, 42, 0.78);
+      border: 1.5px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65);
+      transition: box-shadow 0.28s ease, border-color 0.28s ease, filter 0.28s ease;
+      will-change: transform;
+      contain: layout style;
+    }
+    .memory-card:hover {
+      border-color: var(--card-color, #38bdf8);
+      box-shadow: 0 0 32px var(--card-glow, rgba(56, 189, 248, 0.55)), 0 18px 40px rgba(0, 0, 0, 0.85);
+      z-index: 50 !important;
+    }
+    .memory-card .thumb-wrap {
+      width: 100%;
+      height: 100%;
+      border-radius: 9px;
+      overflow: hidden;
+      position: relative;
+      background: radial-gradient(circle at center, rgba(30, 41, 59, 0.9), rgba(9, 13, 28, 0.95));
+    }
+    .memory-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    .memory-card img.loaded {
+      opacity: 1;
+    }
+    .memory-card:hover img.loaded {
+      transform: scale(1.06);
+    }
+    .memory-card .card-badge {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 9px;
+      border-radius: 8px;
+      background: rgba(6, 10, 22, 0.82);
+      backdrop-filter: blur(6px);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #f1f5f9;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      opacity: 0.88;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+    .memory-card:hover .card-badge {
+      opacity: 1;
+    }
+
+    /* Cosmic Core & Sector Beacons */
+    .cosmic-core {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      pointer-events: auto;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 10;
+    }
+    .core-ring {
+      border-radius: 9999px;
+      position: absolute;
+      border: 1px dashed rgba(245, 158, 11, 0.32);
+      animation: spinSlow 48s linear infinite;
+      pointer-events: none;
+    }
+    .core-ring-reverse {
+      border-radius: 9999px;
+      position: absolute;
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      animation: spinSlowReverse 64s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spinSlowReverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes sandStreamFlow {
+      0% { stroke-dashoffset: 24; opacity: 0.75; }
+      50% { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 0.75; }
+    }
+    @keyframes sandPulseTop {
+      0%, 100% { transform: scaleY(1); opacity: 0.9; }
+      50% { transform: scaleY(0.86); opacity: 0.75; }
+    }
+    @keyframes sandPulseBottom {
+      0%, 100% { transform: scaleY(0.92); opacity: 0.85; }
+      50% { transform: scaleY(1.04); opacity: 1; }
+    }
+    @keyframes floatDust {
+      0%, 100% { transform: translateY(0px) scale(1); opacity: 0.4; }
+      50% { transform: translateY(-10px) scale(1.25); opacity: 0.95; }
+    }
+    .hourglass-body-wrap {
+      transition: transform 0.95s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease;
+    }
+    .cosmic-core:hover .hourglass-svg-wrap {
+      filter: drop-shadow(0 0 36px rgba(245, 158, 11, 0.75)) drop-shadow(0 0 70px rgba(56, 189, 248, 0.45));
+      transform: scale(1.04);
+    }
+    .hourglass-svg-wrap {
+      transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
+      filter: drop-shadow(0 0 26px rgba(245, 158, 11, 0.5)) drop-shadow(0 0 55px rgba(168, 85, 247, 0.35));
+    }
+    .sand-stream-line {
+      stroke-dasharray: 6 6;
+      animation: sandStreamFlow 0.7s linear infinite;
+    }
+    .sand-top-mass {
+      transform-origin: 110px 128px;
+      animation: sandPulseTop 6s ease-in-out infinite;
+    }
+    .sand-bottom-mass {
+      transform-origin: 110px 236px;
+      animation: sandPulseBottom 6s ease-in-out infinite;
+    }
+    .stardust-mote {
+      animation: floatDust 3.2s ease-in-out infinite;
+    }
+
+    /* Year Cluster Hub Beacon */
+    .year-beacon {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      pointer-events: auto;
+      cursor: pointer;
+      text-align: center;
+      z-index: 8;
+      transition: transform 0.25s ease;
+    }
+    .year-beacon:hover {
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    /* Direction Markers in World */
+    .direction-beacon {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      text-align: center;
+      z-index: 5;
+    }
+
+    /* Custom Scrollbar for Modals */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.5);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.35);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(245, 158, 11, 0.6);
+    }
+
+    /* Hide scrollbar on filter bar */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="relative select-none overflow-hidden">
+
+  <!-- Background Starfield & Constellation Canvas -->
+  <canvas id="starfield-canvas"></canvas>
+
+  <!-- Interactive Pan & Zoom Universe Viewport -->
+  <div id="universe-viewport" aria-label="Không gian Vũ Trụ Ký Ức 8 Năm">
+    <div id="world-layer">
+      <!-- Dynamic Cosmic Core, 4 Direction Beacons, 8 Year Beacons, and Culled Memory Cards rendered here -->
+    </div>
+  </div>
+
+  <!-- TOP HUD: Brand Header + 8 Years Filter Bar -->
+  <header class="fixed top-0 left-0 right-0 z-30 pointer-events-none p-3 sm:p-4 flex flex-col gap-2.5">
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <!-- Club Anniversary Title Card -->
+      <div class="glass-panel pointer-events-auto rounded-2xl px-3.5 py-2.5 flex items-center gap-3">
+        <button id="btn-home-core" type="button" title="Bay về Tâm Vũ Trụ (0, 0)" class="w-10 h-10 rounded-xl bg-slate-900/90 border border-amber-400/40 p-1 flex items-center justify-center shadow-lg shadow-amber-500/20 hover:scale-105 transition-transform">
+          <img src="https://ik.imagekit.io/akf/LogoYTC.png?updatedAt=1791206527381" alt="Logo YTC" class="w-full h-full object-contain" />
+        </button>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-display font-bold text-sm sm:text-base tracking-wide text-white">VŨ TRỤ KÝ ỨC</h1>
+            <span class="text-[10px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">CLB Truyền Thông YTC</span>
+          </div>
+          <p class="text-[11px] text-slate-300/85 hidden sm:block">Hành trình 8 năm rực rỡ · <span id="hud-photo-count">290</span> mảnh ký ức phân rã khắp 4 hướng vũ trụ</p>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls (Right Top) -->
+      <div class="flex items-center gap-1.5 sm:gap-2 pointer-events-auto">
+        <!-- Layout Mode Toggle -->
+        <button id="btn-toggle-scatter-mode" type="button" class="glass-pill px-3 py-2 rounded-xl text-xs font-medium text-slate-200 flex items-center gap-1.5" title="Chuyển chế độ phân mảnh vũ trụ">
+          <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+          <span id="scatter-mode-label" class="hidden md:inline">Phân Rã Ngẫu Nhiên</span>
+        </button>
+
+        <!-- Rescatter Random Positions -->
+        <button id="btn-rescatter" type="button" class="glass-pill px-3 py-2 rounded-xl text-xs font-medium text-slate-200 flex items-center gap-1.5" title="Phân rã ngẫu nhiên lại vị trí các ảnh">
+          <svg class="w-3.5 h-3.5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span class="hidden sm:inline">Phân Rã Lại</span>
+        </button>
+
+        <!-- Random Memory Warp -->
+        <button id="btn-random-warp" type="button" class="glass-pill px-3 py-2 rounded-xl text-xs font-semibold text-amber-300 border-amber-400/30 flex items-center gap-1.5" title="Bay tới một mảnh ký ức ngẫu nhiên">
+          <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <span>Du Hành Ngẫu Nhiên</span>
+        </button>
+
+        <!-- Guide Modal Button -->
+        <button id="btn-open-guide" type="button" class="glass-pill w-9 h-9 rounded-xl flex items-center justify-center text-slate-300 hover:text-white" title="Hướng dẫn khám phá Vũ trụ">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- 8-Year Fragment Bar (Phân mảnh 8 năm) -->
+    <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pointer-events-auto pb-1" id="year-filter-bar">
+      <!-- Dynamically populated buttons: Tất cả + Năm 1..8 + Đã lưu -->
+    </div>
+  </header>
+
+  <!-- BOTTOM LEFT HUD: 4-Direction Cosmic Compass & Telemetry -->
+  <aside class="fixed bottom-4 left-4 z-30 pointer-events-none flex flex-col gap-2.5">
+    <!-- 4 Directions Quick Warp Pad -->
+    <div class="glass-panel pointer-events-auto rounded-2xl p-2.5 w-44 sm:w-48">
+      <div class="flex items-center justify-between mb-1.5 px-1">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">La Bàn 4 Hướng Vũ Trụ</span>
+        <span id="hud-current-sector" class="text-[10px] font-semibold text-amber-400">Tâm Vũ Trụ</span>
+      </div>
+      <div class="grid grid-cols-3 gap-1 text-center">
+        <div></div>
+        <button type="button" data-dir="north" class="dir-warp-btn glass-pill py-1.5 rounded-lg text-[11px] font-semibold text-sky-300 hover:text-white" title="Bay về Hướng Bắc (Thượng Vũ Trụ)">
+          ▲ BẮC
+        </button>
+        <div></div>
+        <button type="button" data-dir="west" class="dir-warp-btn glass-pill py-1.5 rounded-lg text-[11px] font-semibold text-purple-300 hover:text-white" title="Bay về Hướng Tây (Tây Vũ Trụ)">
+          ◀ TÂY
+        </button>
+        <button type="button" data-dir="center" class="dir-warp-btn glass-pill py-1.5 rounded-lg text-[10px] font-bold text-amber-300 hover:text-white" title="Về Tâm Vũ Trụ (0,0)">
+          TÂM 8Y
+        </button>
+        <button type="button" data-dir="east" class="dir-warp-btn glass-pill py-1.5 rounded-lg text-[11px] font-semibold text-emerald-300 hover:text-white" title="Bay về Hướng Đông (Đông Vũ Trụ)">
+          ĐÔNG ▶
+        </button>
+        <div></div>
+        <button type="button" data-dir="south" class="dir-warp-btn glass-pill py-1.5 rounded-lg text-[11px] font-semibold text-rose-300 hover:text-white" title="Bay về Hướng Nam (Hạ Vũ Trụ)">
+          ▼ NAM
+        </button>
+        <div></div>
+      </div>
+      <div class="mt-2 pt-1.5 border-t border-white/10 flex items-center justify-between text-[10px] text-slate-400 px-1 font-mono">
+        <span id="hud-coords">X: 0 · Y: 0</span>
+        <span id="hud-visible-count">Đang hiện: 0 ảnh</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- BOTTOM CENTER HUD: Zoom & View Controls -->
+  <div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-30 pointer-events-auto glass-panel rounded-2xl px-2.5 py-1.5 flex items-center gap-1.5 sm:gap-2">
+    <button id="btn-zoom-out" type="button" class="glass-pill w-8 h-8 rounded-xl flex items-center justify-center text-slate-200 hover:text-white" title="Thu nhỏ (Zoom Out)">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+    </button>
+    <input id="zoom-slider" type="range" min="0.07" max="1.8" step="0.01" value="0.38" class="w-20 sm:w-28 accent-amber-400 cursor-pointer h-1.5 bg-slate-700 rounded-lg" aria-label="Mức thu phóng" />
+    <span id="hud-zoom-pct" class="text-[11px] font-mono font-semibold text-amber-300 w-11 text-center">38%</span>
+    <button id="btn-zoom-in" type="button" class="glass-pill w-8 h-8 rounded-xl flex items-center justify-center text-slate-200 hover:text-white" title="Phóng to (Zoom In)">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+    </button>
+    <div class="h-4 w-px bg-white/15 mx-0.5"></div>
+    <button id="btn-overview" type="button" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-medium text-slate-200 hover:text-white" title="Nhìn toàn cảnh Vũ trụ">
+      Toàn Cảnh
+    </button>
+    <button id="btn-toggle-lines" type="button" class="glass-pill px-2.5 py-1.5 rounded-xl text-[11px] font-medium text-sky-300 hover:text-white hidden sm:inline-flex items-center gap-1" title="Bật/tắt đường nối chòm sao ký ức">
+      <span>Chòm Sao</span>
+    </button>
+  </div>
+
+  <!-- BOTTOM RIGHT HUD: Interactive Radar Minimap -->
+  <aside class="fixed bottom-4 right-4 z-30 pointer-events-auto glass-panel rounded-2xl p-2 hidden sm:flex flex-col items-center gap-1">
+    <div class="w-full flex items-center justify-between px-1">
+      <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Radar Vũ Trụ</span>
+      <span class="text-[9px] text-slate-400">Click để bay tới</span>
+    </div>
+    <canvas id="minimap-canvas" width="164" height="164" class="rounded-xl bg-slate-950/90 border border-white/10 cursor-crosshair"></canvas>
+  </aside>
+
+  <!-- MEMORY LIGHTBOX MODAL (Strictly hides image URL/filePath/filename as requested) -->
+  <div id="memory-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-xl">
+    <div class="relative w-full max-w-5xl glass-panel rounded-3xl overflow-hidden border border-white/15 shadow-2xl flex flex-col lg:flex-row max-h-[92vh]">
+      
+      <!-- Close Button -->
+      <button id="btn-close-lightbox" type="button" class="absolute top-3.5 right-3.5 z-20 w-10 h-10 rounded-full bg-slate-900/80 border border-white/20 flex items-center justify-center text-slate-200 hover:text-white hover:bg-rose-600/80 transition-colors" title="Đóng (Esc)">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <!-- Left/Main Image Viewer Area (No URLs or file paths exposed!) -->
+      <div class="relative flex-1 bg-black/75 flex items-center justify-center min-h-[300px] sm:min-h-[440px] lg:min-h-[540px] p-4 select-none overflow-hidden" oncontextmenu="return false;">
+        <!-- Prev Memory Button -->
+        <button id="btn-prev-memory" type="button" class="absolute left-3 z-10 w-10 h-10 rounded-full bg-slate-900/75 border border-white/15 flex items-center justify-center text-white hover:bg-amber-500 hover:text-slate-950 transition-colors" title="Mảnh ký ức trước (←)">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+
+        <!-- Loading Spinner -->
+        <div id="lightbox-spinner" class="absolute inset-0 flex flex-col items-center justify-center gap-2 pointer-events-none">
+          <div class="w-9 h-9 border-2 border-amber-400 border-t-transparent rounded-full animate-spin"></div>
+          <span class="text-xs text-slate-400">Đang tái hiện mảnh ký ức...</span>
+        </div>
+
+        <!-- Protected Image Element -->
+        <img id="lightbox-img" src="" alt="Mảnh ký ức CLB Truyền thông" draggable="false" oncontextmenu="return false;" class="max-h-[68vh] lg:max-h-[82vh] max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl transition-opacity duration-300 opacity-0 pointer-events-none" />
+
+        <!-- Next Memory Button -->
+        <button id="btn-next-memory" type="button" class="absolute right-3 z-10 w-10 h-10 rounded-full bg-slate-900/75 border border-white/15 flex items-center justify-center text-white hover:bg-amber-500 hover:text-slate-950 transition-colors" title="Mảnh ký ức tiếp theo (→)">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+      <!-- Right Sidebar: Cosmic Memory Metadata & Personal Note (NO image link or path shown) -->
+      <div class="w-full lg:w-80 xl:w-96 p-5 sm:p-6 flex flex-col justify-between bg-slate-900/75 border-t lg:border-t-0 lg:border-l border-white/10 overflow-y-auto">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <span id="lb-year-badge" class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-amber-500/20 text-amber-300 border border-amber-400/40">NĂM 1</span>
+            <span id="lb-direction-badge" class="px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/10 text-slate-200">Hướng Bắc</span>
+          </div>
+
+          <div>
+            <h2 id="lb-memory-title" class="font-display font-bold text-xl text-white">Mảnh Ký Ức #001</h2>
+            <p id="lb-chapter-subtitle" class="text-xs text-slate-400 mt-0.5">Chòm sao Kỷ Niệm 8 Năm CLB Truyền Thông YTC</p>
+          </div>
+
+          <!-- Cosmic Coordinates & Frame Specs (No URL/Path!) -->
+          <div class="grid grid-cols-2 gap-2.5 pt-2">
+            <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+              <div class="text-[10px] uppercase tracking-wider text-slate-400">Tọa Độ Vũ Trụ</div>
+              <div id="lb-coords" class="text-xs font-mono font-semibold text-sky-300 mt-1">X: +120 · Y: -450</div>
+            </div>
+            <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+              <div class="text-[10px] uppercase tracking-wider text-slate-400">Khung Hình Ký Ức</div>
+              <div id="lb-dimensions" class="text-xs font-mono font-semibold text-emerald-300 mt-1">2048 × 1365 px</div>
+            </div>
+          </div>
+
+          <!-- Interactive Memory Note / Message -->
+          <div class="hidden space-y-1.5 pt-1">
+            <label for="lb-note-input" class="block text-xs font-semibold text-slate-300">Lưu bút / Cảm xúc cho mảnh ký ức này:</label>
+            <textarea id="lb-note-input" rows="3" placeholder="Viết dòng hồi ức hoặc tên các thành viên trong bức ảnh kỷ niệm này..." class="w-full rounded-xl bg-slate-950/80 border border-white/15 p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 select-text"></textarea>
+            <div class="flex items-center justify-between">
+              <button id="btn-save-note" type="button" class="px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-400/30 text-xs font-semibold transition-colors">
+                Lưu Cảm Xúc
+              </button>
+              <span id="lb-note-saved-msg" class="text-[11px] text-emerald-400 opacity-0 transition-opacity">Đã lưu vào vũ trụ!</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Actions inside Lightbox -->
+        <div class="pt-5 mt-5 border-t border-white/10 flex items-center justify-between gap-2">
+          <button id="btn-favorite-memory" type="button" class="flex-1 py-2.5 px-3 rounded-xl glass-pill flex items-center justify-center gap-2 text-xs font-semibold text-slate-200">
+            <svg id="icon-heart" class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span id="label-favorite">Lưu Tinh Tú</span>
+          </button>
+          <button id="btn-focus-in-universe" type="button" class="py-2.5 px-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-bold text-xs hover:brightness-110 transition-all">
+            Định Vị Trên Vũ Trụ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GUIDE MODAL (Does NOT expose hidden ImageKit config button on homepage) -->
+  <div id="guide-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+    <div class="glass-panel rounded-3xl max-w-lg w-full p-6 border border-white/15 space-y-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 border border-amber-400/40 p-1 flex items-center justify-center"><img src="https://ik.imagekit.io/akf/LogoYTC.png?updatedAt=1791206527381" alt="Logo YTC" class="w-full h-full object-contain" /></div>
+          <h3 class="font-display font-bold text-lg text-white">Hướng Dẫn Du Hành Vũ Trụ Ký Ức</h3>
+        </div>
+        <button id="btn-close-guide" type="button" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-slate-300 hover:text-white">✕</button>
+      </div>
+      <div class="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+        <p>Chào mừng bạn đến với <strong>Vũ Trụ Ký Ức 8 Năm CLB Truyền Thông (YTC)</strong> — nơi <strong><span id="guide-total-count">290</span> bức ảnh kỷ niệm</strong> được phân mảnh theo 8 năm hoạt động và rải rác ngẫu nhiên khắp 4 hướng vũ trụ.</p>
+        <ul class="space-y-2 list-disc list-inside text-slate-300/90">
+          <li><strong>Di chuyển (Pan):</strong> Nhấp giữ chuột và kéo về 4 hướng (Bắc, Đông, Nam, Tây), vuốt cảm ứng trên điện thoại, hoặc dùng phím mũi tên / <kbd class="px-1.5 py-0.5 rounded bg-white/10 font-mono text-[11px]">WASD</kbd>.</li>
+          <li><strong>Thu phóng (Zoom):</strong> Cuộn con lăn chuột để phóng to/thu nhỏ tại vị trí trỏ chuột, hoặc dùng thanh trượt Zoom ở cuối màn hình.</li>
+          <li><strong>Phân mảnh 8 Năm:</strong> Chọn từng năm (<strong>NĂM 1</strong> → <strong>NĂM 8</strong>) trên thanh điều hướng phía trên để bay thẳng đến tinh vân của năm đó.</li>
+          <li><strong>Chạm vào Mảnh Ký Ức:</strong> Nhấp vào bất kỳ bức ảnh nào để ngắm trọn vẹn khoảnh khắc và ghi lại dòng lưu bút.</li>
+        </ul>
+      </div>
+      <div class="pt-2 flex justify-end">
+        <button id="btn-Confirm-guide" type="button" class="px-5 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs hover:bg-amber-400 transition-colors">Bắt Đầu Khám Phá</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIDDEN IMAGEKIT CONFIGURATION MODAL (Only triggered via Keyboard Shortcut: Ctrl+Shift+K, Alt+K, or F9) -->
+  <div id="imagekit-config-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/85 backdrop-blur-xl">
+    <div class="glass-panel rounded-3xl max-w-2xl w-full p-6 border border-amber-400/30 shadow-2xl space-y-5 max-h-[90vh] overflow-y-auto select-text">
+      <div class="flex items-center justify-between border-b border-white/10 pb-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/40 text-[10px] font-mono uppercase">Hidden Admin Panel</span>
+            <span class="text-xs text-slate-400 font-mono">Phím tắt: Ctrl + Shift + K / Alt + K / F9</span>
+          </div>
+          <h3 class="font-display font-bold text-lg text-white mt-1">Cấu Hình Nguồn Ảnh ImageKit.io & Phân Mảnh Vũ Trụ</h3>
+        </div>
+        <button id="btn-close-config" type="button" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-slate-300 hover:text-white" title="Đóng cấu hình">✕</button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div>
+          <label for="cfg-endpoint" class="block font-semibold text-slate-300 mb-1">ImageKit URL Endpoint</label>
+          <input id="cfg-endpoint" type="text" value="https://ik.imagekit.io/akf" class="w-full rounded-xl bg-slate-950/90 border border-white/15 px-3 py-2 text-white font-mono focus:outline-none focus:border-amber-400" />
+        </div>
+        <div>
+          <label for="cfg-rootpath" class="block font-semibold text-slate-300 mb-1">Thư Mục Chính (Root Path)</label>
+          <input id="cfg-rootpath" type="text" value="/YTC_Memories" class="w-full rounded-xl bg-slate-950/90 border border-white/15 px-3 py-2 text-white font-mono focus:outline-none focus:border-amber-400" />
+        </div>
+        <div>
+          <label for="cfg-transform" class="block font-semibold text-slate-300 mb-1">ImageKit Thumbnail Transform</label>
+          <input id="cfg-transform" type="text" value="tr:w-640,q-72" class="w-full rounded-xl bg-slate-950/90 border border-white/15 px-3 py-2 text-white font-mono focus:outline-none focus:border-amber-400" />
+        </div>
+        <div>
+          <label for="cfg-min-dist" class="block font-semibold text-slate-300 mb-1">Khoảng Cách Phân Rã Tối Thiểu (px)</label>
+          <input id="cfg-min-dist" type="number" min="260" max="1400" step="20" value="620" class="w-full rounded-xl bg-slate-950/90 border border-white/15 px-3 py-2 text-white font-mono focus:outline-none focus:border-amber-400" />
+        </div>
+      </div>
+
+      <!-- Import / Update images.js Manifest -->
+      <div class="space-y-2 text-xs">
+        <div class="flex items-center justify-between">
+          <label for="cfg-manifest-json" class="font-semibold text-slate-300">Cập nhật dữ liệu Manifest (<code class="text-amber-300">images.js</code> hoặc JSON)</label>
+          <label class="cursor-pointer px-3 py-1 rounded-lg bg-sky-500/20 text-sky-300 border border-sky-400/30 hover:bg-sky-500/30 font-medium">
+            <span>Chọn file images.js / .json</span>
+            <input id="cfg-file-upload" type="file" accept=".js,.json" class="hidden" />
+          </label>
+        </div>
+        <textarea id="cfg-manifest-json" rows="5" placeholder="Dán nội dung file images.js (window.YTC_MEDIA_MANIFEST = { ... }) hoặc JSON vào đây nếu muốn thay đổi danh sách ảnh..." class="w-full rounded-xl bg-slate-950/90 border border-white/15 p-3 text-slate-200 font-mono text-[11px] focus:outline-none focus:border-amber-400"></textarea>
+        <p id="cfg-status-msg" class="text-[11px] text-slate-400">Đang nạp <span id="cfg-current-count" class="text-amber-300 font-semibold">290</span> ảnh từ 8 thư mục con (<code class="text-slate-300">/YTC_Memories/1</code> → <code class="text-slate-300">/YTC_Memories/8</code>).</p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-white/10">
+        <button id="btn-reset-config" type="button" class="px-3.5 py-2 rounded-xl bg-rose-500/20 text-rose-300 border border-rose-400/30 text-xs font-semibold hover:bg-rose-500/30">
+          Khôi Phục Mặc Định
+        </button>
+        <div class="flex items-center gap-2">
+          <button id="btn-export-manifest" type="button" class="px-3.5 py-2 rounded-xl bg-white/10 text-slate-200 text-xs font-semibold hover:bg-white/20">
+            Tải Xuống images.js
+          </button>
+          <button id="btn-apply-config" type="button" class="px-5 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-bold text-xs hover:brightness-110">
+            Áp Dụng & Tái Tạo Vũ Trụ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="cosmos-toast" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 -translate-y-2 transition-all duration-300 glass-panel px-4 py-2 rounded-full text-xs font-medium text-amber-300 border border-amber-400/40 shadow-lg">
+    Đã cập nhật Vũ Trụ Ký Ức
+  </div>
+
+  <!-- DỮ LIỆU ẢNH TỪ FILE images.js (Khi chỉnh sửa file images.js, web sẽ tự động nạp dữ liệu mới) -->
+  <script src="images.js"></script>
+
+  <!-- MAIN APPLICATION ENGINE -->
+  <script>
+    (function() {
+      'use strict';
+
+      // --- 1. YEAR METADATA & 4-DIRECTION COSMIC SECTORS ---
+      // 8 Years mapped across the 4 Cardinal Directions (North, East, South, West)
+      // Inner Ring (Years 1-4) & Outer Deep-Space Ring (Years 5-8) + angular dispersion so all 4 directions are richly populated
+      const YEAR_META = {
+        '1': {
+          id: '1', label: 'NĂM 1', title: 'Khởi Nguyên Đam Mê',
+          directionKey: 'north', directionName: 'Hướng Bắc',
+          color: '#38bdf8', glow: 'rgba(56, 189, 248, 0.55)',
+          baseAngle: -Math.PI / 2 - 0.22, baseRadius: 1950
+        },
+        '2': {
+          id: '2', label: 'NĂM 2', title: 'Gieo Mầm Sáng Tạo',
+          directionKey: 'east', directionName: 'Hướng Đông',
+          color: '#34d399', glow: 'rgba(52, 211, 153, 0.55)',
+          baseAngle: 0 - 0.22, baseRadius: 2150
+        },
+        '3': {
+          id: '3', label: 'NĂM 3', title: 'Vươn Mình Bền Bỉ',
+          directionKey: 'south', directionName: 'Hướng Nam',
+          color: '#fb7185', glow: 'rgba(251, 113, 133, 0.55)',
+          baseAngle: Math.PI / 2 - 0.22, baseRadius: 2250
+        },
+        '4': {
+          id: '4', label: 'NĂM 4', title: 'Dấu Ấn Trưởng Thành',
+          directionKey: 'west', directionName: 'Hướng Tây',
+          color: '#c084fc', glow: 'rgba(192, 132, 252, 0.55)',
+          baseAngle: Math.PI - 0.22, baseRadius: 2550
+        },
+        '5': {
+          id: '5', label: 'NĂM 5', title: 'Bứt Phá Giới Hạn',
+          directionKey: 'north', directionName: 'Hướng Đông Bắc',
+          color: '#facc15', glow: 'rgba(250, 204, 21, 0.55)',
+          baseAngle: -Math.PI / 4, baseRadius: 4300
+        },
+        '6': {
+          id: '6', label: 'NĂM 6', title: 'Lan Tỏa Thanh Xuân',
+          directionKey: 'east', directionName: 'Hướng Đông Nam',
+          color: '#fb923c', glow: 'rgba(251, 146, 60, 0.55)',
+          baseAngle: Math.PI / 4, baseRadius: 4900
+        },
+        '7': {
+          id: '7', label: 'NĂM 7', title: 'Rực Rỡ Tinh Hà',
+          directionKey: 'south', directionName: 'Hướng Tây Nam',
+          color: '#f472b6', glow: 'rgba(244, 114, 182, 0.55)',
+          baseAngle: (3 * Math.PI) / 4, baseRadius: 5800
+        },
+        '8': {
+          id: '8', label: 'NĂM 8', title: 'Hội Tụ 8 Năm Vươn Xa',
+          directionKey: 'west', directionName: 'Hướng Tây Bắc',
+          color: '#60a5fa', glow: 'rgba(96, 165, 250, 0.55)',
+          baseAngle: (-3 * Math.PI) / 4, baseRadius: 4600
+        }
+      };
+
+      const DIRECTION_TARGETS = {
+        center: { x: 0, y: 0, zoom: 0.36, label: 'Tâm Vũ Trụ (0,0)' },
+        north:  { x: 900, y: -3400, zoom: 0.34, label: 'Hướng Bắc · Thượng Vũ Trụ' },
+        east:   { x: 3800, y: 1200, zoom: 0.34, label: 'Hướng Đông · Đông Vũ Trụ' },
+        south:  { x: -1600, y: 4200, zoom: 0.30, label: 'Hướng Nam · Hạ Vũ Trụ' },
+        west:   { x: -3600, y: -1200, zoom: 0.34, label: 'Hướng Tây · Tây Vũ Trụ' }
+      };
+
+      // --- 2. STATE & STORAGE HELPERS ---
+      const DEFAULT_MANIFEST = JSON.parse(JSON.stringify(window.YTC_MEDIA_MANIFEST || {
+        endpoint: 'https://ik.imagekit.io/akf',
+        rootPath: '/YTC_Memories',
+        groups: [],
+        files: []
+      }));
+
+      let appConfig = {
+        endpoint: DEFAULT_MANIFEST.endpoint || 'https://ik.imagekit.io/akf',
+        rootPath: DEFAULT_MANIFEST.rootPath || '/YTC_Memories',
+        thumbTransform: 'tr:w-800,q-80',
+        minDistance: 620,
+        scatterMode: 'free4', // Mặc định chế độ phân rã ngẫu nhiên khắp 4 hướng
+        showConstellations: true,
+        seed: 202608
+      };
+
+      let favoritesMap = {};
+      let notesMap = {};
+
+      function loadSavedState() {
+        try {
+          const savedCfg = localStorage.getItem('ytc_cosmos_config_v2');
+          if (savedCfg) {
+            const parsed = JSON.parse(savedCfg);
+            appConfig = Object.assign({}, appConfig, parsed);
+          }
+          // Luôn đồng bộ endpoint và rootPath mới nhất từ file images.js (window.YTC_MEDIA_MANIFEST)
+          if (window.YTC_MEDIA_MANIFEST) {
+            if (window.YTC_MEDIA_MANIFEST.endpoint) appConfig.endpoint = window.YTC_MEDIA_MANIFEST.endpoint;
+            if (window.YTC_MEDIA_MANIFEST.rootPath) appConfig.rootPath = window.YTC_MEDIA_MANIFEST.rootPath;
+          }
+          const savedFavs = localStorage.getItem('ytc_cosmos_favs_v1');
+          if (savedFavs) favoritesMap = JSON.parse(savedFavs);
+          const savedNotes = localStorage.getItem('ytc_cosmos_notes_v1');
+          if (savedNotes) notesMap = JSON.parse(savedNotes);
+        } catch (err) {
+          // Ignore storage errors in sandboxed context
+        }
+      }
+
+      function saveConfigState() {
+        try {
+          localStorage.setItem('ytc_cosmos_config_v2', JSON.stringify(appConfig));
+        } catch (err) {}
+      }
+
+      loadSavedState();
+
+      // Seeded PRNG for reproducible yet customizable scatter
+      function createPRNG(seed) {
+        let s = seed % 2147483647;
+        if (s <= 0) s += 2147483646;
+        return function() {
+          s = (s * 16807) % 2147483647;
+          return (s - 1) / 2147483646;
+        };
+      }
+
+      // --- 3. BUILD & SCATTER MEMORY NODES ACROSS 4 DIRECTIONS & 8 YEARS ---
+      let memoryNodes = [];
+      let yearHubs = {};
+      let constellationEdges = [];
+      let activeFilter = 'all'; // 'all', '1'..'8', or 'fav'
+      let activeLightboxIndex = -1;
+
+      function getDirectionLabelFromCoords(x, y) {
+        const angle = Math.atan2(y, x) * (180 / Math.PI); // -180 to 180
+        if (angle >= -112.5 && angle < -67.5) return 'Hướng Bắc';
+        if (angle >= -67.5 && angle < -22.5) return 'Hướng Đông Bắc';
+        if (angle >= -22.5 && angle < 22.5) return 'Hướng Đông';
+        if (angle >= 22.5 && angle < 67.5) return 'Hướng Đông Nam';
+        if (angle >= 67.5 && angle < 112.5) return 'Hướng Nam';
+        if (angle >= 112.5 && angle < 157.5) return 'Hướng Tây Nam';
+        if (angle >= -157.5 && angle < -112.5) return 'Hướng Tây Bắc';
+        return 'Hướng Tây';
+      }
+
+      function buildThumbUrl(file) {
+        const ep = (appConfig.endpoint || 'https://ik.imagekit.io/akf').replace(/\/+$/, '');
+        const tr = (appConfig.thumbTransform || 'tr:w-640,q-72').replace(/^\/+|\/+$/g, '');
+        if (file.filePath) {
+          const encodedPath = file.filePath.split('/').map(seg => encodeURIComponent(seg)).join('/');
+          return ep + '/' + tr + encodedPath;
+        }
+        return file.thumbUrl || file.url;
+      }
+
+      function buildFullUrl(file) {
+        const ep = (appConfig.endpoint || 'https://ik.imagekit.io/akf').replace(/\/+$/, '');
+        if (file.filePath) {
+          const encodedPath = file.filePath.split('/').map(seg => encodeURIComponent(seg)).join('/');
+          return ep + encodedPath;
+        }
+        return file.url || file.thumbUrl;
+      }
+
+      function generateUniverseLayout() {
+        const manifest = window.YTC_MEDIA_MANIFEST || DEFAULT_MANIFEST;
+        const files = Array.isArray(manifest.files) ? manifest.files : [];
+        const rand = createPRNG(appConfig.seed);
+        const minDist = Math.max(260, Number(appConfig.minDistance) || 460);
+
+        memoryNodes = [];
+        yearHubs = {};
+        constellationEdges = [];
+
+        // Sync custom group labels from images.js if user modified groups in images.js
+        if (Array.isArray(manifest.groups)) {
+          const palette = ['#38bdf8', '#34d399', '#fb7185', '#c084fc', '#facc15', '#fb923c', '#f472b6', '#60a5fa'];
+          manifest.groups.forEach((grp, idx) => {
+            const gid = String(grp.id || (idx + 1));
+            if (YEAR_META[gid]) {
+              if (grp.label) YEAR_META[gid].label = grp.label;
+            } else {
+              const c = palette[idx % palette.length];
+              YEAR_META[gid] = {
+                id: gid,
+                label: grp.label || ('NĂM ' + gid),
+                title: grp.name || 'Mảnh Ký Ức',
+                directionKey: ['north', 'east', 'south', 'west'][idx % 4],
+                directionName: ['Hướng Bắc', 'Hướng Đông', 'Hướng Nam', 'Hướng Tây'][idx % 4],
+                color: c,
+                glow: 'rgba(245, 158, 11, 0.55)',
+                baseAngle: (idx * Math.PI) / 4,
+                baseRadius: 3200 + (idx % 3) * 1100
+              };
+            }
+          });
+        }
+
+        // Group files by year
+        const grouped = {};
+        Object.keys(YEAR_META).forEach(k => { grouped[k] = []; });
+        files.forEach((f, idx) => {
+          const gid = String(f.groupId || '1');
+          if (!grouped[gid]) grouped[gid] = [];
+          grouped[gid].push({ file: f, globalIndex: idx });
+        });
+
+        // Placed positions list for global anti-collision repulsion
+        const placedPoints = [{ x: 0, y: 0, r: 540 }]; // Keep central hourglass clear
+
+        if (appConfig.scatterMode === 'sector8') {
+          // Mode 1: 8 Year Nebulae distributed across all 4 directions, with wide organic scatter
+          Object.keys(YEAR_META).forEach(gid => {
+            const meta = YEAR_META[gid];
+            const items = grouped[gid] || [];
+            const count = items.length;
+
+            // Calculate hub center in the 4-directional space
+            const hubX = Math.cos(meta.baseAngle) * meta.baseRadius;
+            const hubY = Math.sin(meta.baseAngle) * meta.baseRadius;
+            yearHubs[gid] = {
+              id: gid,
+              x: hubX,
+              y: hubY,
+              count: count,
+              meta: meta
+            };
+            placedPoints.push({ x: hubX, y: hubY, r: 340 });
+
+            // Scatter items around hubX, hubY with wide spread proportional to item count
+            const clusterSpan = Math.max(1100, Math.sqrt(count) * minDist * 0.98);
+
+            items.forEach((entry, localIdx) => {
+              const f = entry.file;
+              const aspect = (f.width && f.height) ? (f.width / f.height) : 1.5;
+              const cardW = aspect >= 1 ? 390 : 300;
+              const cardH = Math.round(cardW / Math.max(0.65, Math.min(2.2, aspect)));
+
+              let px = hubX;
+              let py = hubY;
+              let attempts = 0;
+              const maxAttempts = 140;
+
+              while (attempts < maxAttempts) {
+                // Spiral + random jitter distribution
+                const ratio = (localIdx + 1) / Math.max(1, count);
+                const radius = 360 + Math.pow(rand(), 0.62) * clusterSpan + (attempts > 60 ? (attempts - 60) * 18 : 0);
+                // Spread angle widely around the sector's outward direction
+                const angleSpread = (rand() - 0.5) * 1.45 + (rand() - 0.5) * 0.5;
+                const theta = meta.baseAngle + angleSpread;
+
+                px = hubX + Math.cos(theta) * radius + (rand() - 0.5) * 420;
+                py = hubY + Math.sin(theta) * radius + (rand() - 0.5) * 420;
+
+                let collision = false;
+                for (let i = 0; i < placedPoints.length; i++) {
+                  const dx = px - placedPoints[i].x;
+                  const dy = py - placedPoints[i].y;
+                  const req = Math.max(minDist, placedPoints[i].r);
+                  if (dx * dx + dy * dy < req * req) {
+                    collision = true;
+                    break;
+                  }
+                }
+                if (!collision) break;
+                attempts++;
+              }
+
+              placedPoints.push({ x: px, y: py, r: minDist });
+
+              memoryNodes.push({
+                id: f.id || ('mem_' + entry.globalIndex),
+                index: memoryNodes.length,
+                serialNumber: String(memoryNodes.length + 1).padStart(3, '0'),
+                groupId: gid,
+                yearMeta: meta,
+                x: Math.round(px),
+                y: Math.round(py),
+                w: cardW,
+                h: cardH,
+                imgWidth: f.width || 2048,
+                imgHeight: f.height || 1365,
+                rotation: ((rand() - 0.5) * 9).toFixed(2),
+                scaleDepth: (0.92 + rand() * 0.18).toFixed(2),
+                directionText: getDirectionLabelFromCoords(px, py),
+                thumbUrl: buildThumbUrl(f),
+                fullUrl: buildFullUrl(f),
+                rawFile: f
+              });
+            });
+          });
+        } else {
+          // Mode 2: Free 4-Direction Omni-Scatter (all 8 years intermingled across North, East, South, West)
+          const total = files.length;
+          const maxRadius = Math.max(5400, Math.sqrt(Math.max(1, total)) * minDist * 1.05);
+
+          // Place Year Beacons in a circle so filter buttons still have a target
+          Object.keys(YEAR_META).forEach(gid => {
+            const meta = YEAR_META[gid];
+            yearHubs[gid] = {
+              id: gid,
+              x: Math.cos(meta.baseAngle) * 2800,
+              y: Math.sin(meta.baseAngle) * 2800,
+              count: (grouped[gid] || []).length,
+              meta: meta
+            };
+          });
+
+          files.forEach((f, idx) => {
+            const gid = String(f.groupId || '1');
+            const meta = YEAR_META[gid] || YEAR_META['1'];
+            const aspect = (f.width && f.height) ? (f.width / f.height) : 1.5;
+            const cardW = aspect >= 1 ? 390 : 300;
+            const cardH = Math.round(cardW / Math.max(0.65, Math.min(2.2, aspect)));
+
+            let px = 0, py = 0, attempts = 0;
+            while (attempts < 150) {
+              // Explicitly distribute across the 4 directions (N, E, S, W) + diagonals
+              const dirBranch = (idx % 4) * (Math.PI / 2) + (rand() - 0.5) * (Math.PI / 2);
+              const r = 560 + Math.pow(rand(), 0.72) * maxRadius + (attempts > 70 ? attempts * 18 : 0);
+              px = Math.cos(dirBranch) * r;
+              py = Math.sin(dirBranch) * r;
+
+              let collision = false;
+              for (let i = 0; i < placedPoints.length; i++) {
+                const dx = px - placedPoints[i].x;
+                const dy = py - placedPoints[i].y;
+                const req = Math.max(minDist, placedPoints[i].r);
+                if (dx * dx + dy * dy < req * req) {
+                  collision = true;
+                  break;
+                }
+              }
+              if (!collision) break;
+              attempts++;
+            }
+            placedPoints.push({ x: px, y: py, r: minDist });
+
+            memoryNodes.push({
+              id: f.id || ('mem_' + idx),
+              index: memoryNodes.length,
+              serialNumber: String(memoryNodes.length + 1).padStart(3, '0'),
+              groupId: gid,
+              yearMeta: meta,
+              x: Math.round(px),
+              y: Math.round(py),
+              w: cardW,
+              h: cardH,
+              imgWidth: f.width || 2048,
+              imgHeight: f.height || 1365,
+              rotation: ((rand() - 0.5) * 9).toFixed(2),
+              scaleDepth: (0.92 + rand() * 0.18).toFixed(2),
+              directionText: getDirectionLabelFromCoords(px, py),
+              thumbUrl: buildThumbUrl(f),
+              fullUrl: buildFullUrl(f),
+              rawFile: f
+            });
+          });
+        }
+
+        // Build subtle constellation filaments connecting nearest neighbors within each year
+        for (let g = 1; g <= 8; g++) {
+          const gid = String(g);
+          const groupNodes = memoryNodes.filter(n => n.groupId === gid);
+          const color = (YEAR_META[gid] || YEAR_META['1']).color;
+          groupNodes.forEach((node, i) => {
+            let bestDist = Infinity;
+            let bestTarget = null;
+            for (let j = 0; j < groupNodes.length; j++) {
+              if (i === j) continue;
+              const dx = node.x - groupNodes[j].x;
+              const dy = node.y - groupNodes[j].y;
+              const d2 = dx * dx + dy * dy;
+              if (d2 < bestDist && d2 < 1400 * 1400) {
+                bestDist = d2;
+                bestTarget = groupNodes[j];
+              }
+            }
+            if (bestTarget) {
+              constellationEdges.push({
+                x1: node.x, y1: node.y,
+                x2: bestTarget.x, y2: bestTarget.y,
+                groupId: gid,
+                color: color
+              });
+            }
+          });
+        }
+
+        // Update HUD counts
+        document.getElementById('hud-photo-count').textContent = memoryNodes.length;
+        document.getElementById('guide-total-count').textContent = memoryNodes.length;
+        document.getElementById('cfg-current-count').textContent = memoryNodes.length;
+
+        renderStaticWorldLandmarks();
+        renderYearFilterBar();
+        syncVisibleCards(true);
+      }
+
+      // --- 4. STATIC WORLD LANDMARKS (Central 8-Year Core, 4 Directions, 8 Year Beacons) ---
+      const worldLayer = document.getElementById('world-layer');
+      let staticLandmarksContainer = null;
+      let cardsContainer = null;
+      const mountedCardElements = new Map();
+
+      function renderStaticWorldLandmarks() {
+        worldLayer.innerHTML = '';
+        mountedCardElements.clear();
+
+        staticLandmarksContainer = document.createElement('div');
+        staticLandmarksContainer.id = 'world-landmarks';
+        worldLayer.appendChild(staticLandmarksContainer);
+
+        cardsContainer = document.createElement('div');
+        cardsContainer.id = 'world-cards';
+        worldLayer.appendChild(cardsContainer);
+
+        // 1. Central 8th Anniversary Cosmic Hourglass at (0, 0)
+        const coreEl = document.createElement('div');
+        coreEl.className = 'cosmic-core group';
+        coreEl.style.left = '0px';
+        coreEl.style.top = '0px';
+        let hourglassFlipDeg = 0;
+        coreEl.innerHTML = `
+          <div class="core-ring" style="width: 620px; height: 620px;"></div>
+          <div class="core-ring-reverse" style="width: 470px; height: 470px;"></div>
+          <div class="core-ring" style="width: 340px; height: 340px; border-style: dotted; border-color: rgba(192,132,252,0.35);"></div>
+
+          <!-- Top Label Banner -->
+          <div class="mb-2 px-4 py-1 rounded-full bg-slate-950/85 border border-amber-400/40 backdrop-blur-md shadow-[0_0_25px_rgba(245,158,11,0.3)] flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+            <span class="text-[11px] font-bold tracking-[0.24em] text-amber-300 uppercase">Đồng Hồ Cát Thời Gian</span>
+          </div>
+
+          <!-- Cosmic Hourglass SVG (Figure-8 & Time Symbol) -->
+          <div id="central-hourglass-visual" class="hourglass-svg-wrap relative flex items-center justify-center">
+            <svg id="central-hourglass-svg" width="240" height="300" viewBox="0 0 220 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="overflow-visible transition-transform duration-1000 ease-in-out">
+              <defs>
+                <linearGradient id="hgFrameGrad" x1="20" y1="15" x2="200" y2="265" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#fde68a" />
+                  <stop offset="35%" stop-color="#f59e0b" />
+                  <stop offset="70%" stop-color="#c084fc" />
+                  <stop offset="100%" stop-color="#38bdf8" />
+                </linearGradient>
+                <linearGradient id="hgGlassGrad" x1="50" y1="30" x2="170" y2="250" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="rgba(56, 189, 248, 0.22)" />
+                  <stop offset="50%" stop-color="rgba(168, 85, 247, 0.16)" />
+                  <stop offset="100%" stop-color="rgba(245, 158, 11, 0.24)" />
+                </linearGradient>
+                <linearGradient id="hgSandTopGrad" x1="110" y1="65" x2="110" y2="132" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.75" />
+                  <stop offset="45%" stop-color="#c084fc" stop-opacity="0.85" />
+                  <stop offset="100%" stop-color="#fbbf24" stop-opacity="0.98" />
+                </linearGradient>
+                <linearGradient id="hgSandBotGrad" x1="110" y1="168" x2="110" y2="242" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#fde047" stop-opacity="0.98" />
+                  <stop offset="50%" stop-color="#f59e0b" stop-opacity="0.92" />
+                  <stop offset="100%" stop-color="#f43f5e" stop-opacity="0.85" />
+                </linearGradient>
+                <radialGradient id="hgNeckGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#fef08a" stop-opacity="1" />
+                  <stop offset="45%" stop-color="#f59e0b" stop-opacity="0.65" />
+                  <stop offset="100%" stop-color="#f59e0b" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+
+              <!-- Outer Ambient Halo at Center Neck -->
+              <circle cx="110" cy="140" r="64" fill="url(#hgNeckGlow)" />
+
+              <!-- Side Celestial Pillars -->
+              <line x1="44" y1="28" x2="44" y2="252" stroke="url(#hgFrameGrad)" stroke-width="2.2" stroke-dasharray="5 4" opacity="0.65" />
+              <line x1="176" y1="28" x2="176" y2="252" stroke="url(#hgFrameGrad)" stroke-width="2.2" stroke-dasharray="5 4" opacity="0.65" />
+              <circle cx="44" cy="140" r="4.5" fill="#fbbf24" />
+              <circle cx="176" cy="140" r="4.5" fill="#38bdf8" />
+
+              <!-- Top & Bottom Astrolabe Caps -->
+              <rect x="30" y="16" width="160" height="10" rx="5" fill="url(#hgFrameGrad)" stroke="#fef3c7" stroke-width="1" />
+              <rect x="40" y="26" width="140" height="5" rx="2.5" fill="#0f172a" stroke="#f59e0b" stroke-width="1" />
+              <rect x="40" y="249" width="140" height="5" rx="2.5" fill="#0f172a" stroke="#38bdf8" stroke-width="1" />
+              <rect x="30" y="254" width="160" height="10" rx="5" fill="url(#hgFrameGrad)" stroke="#e0f2fe" stroke-width="1" />
+
+              <!-- Upper & Lower Glass Bulbs (Forming an '8' Silhouette) -->
+              <path d="M52 31 C52 88, 98 118, 104 140 C98 162, 52 192, 52 249 L168 249 C168 192, 122 162, 116 140 C122 118, 168 88, 168 31 Z"
+                    fill="url(#hgGlassGrad)" stroke="url(#hgFrameGrad)" stroke-width="3" stroke-linejoin="round" />
+
+              <!-- Upper Sand Mass (Ký ức đang chảy) -->
+              <path class="sand-top-mass" d="M68 78 Q110 88 152 78 C142 106, 118 124, 112 138 L108 138 C102 124, 78 106, 68 78 Z"
+                    fill="url(#hgSandTopGrad)" />
+
+              <!-- Flowing Stardust Stream through the Neck -->
+              <line x1="110" y1="134" x2="110" y2="236" stroke="#fef08a" stroke-width="3.2" stroke-linecap="round" class="sand-stream-line" />
+              <line x1="110" y1="138" x2="110" y2="236" stroke="#f59e0b" stroke-width="1.5" opacity="0.9" />
+
+              <!-- Lower Sand Dune (Tích tụ 8 năm ký ức) -->
+              <path class="sand-bottom-mass" d="M56 247 C62 214, 92 184, 110 176 C128 184, 158 214, 164 247 Z"
+                    fill="url(#hgSandBotGrad)" />
+
+              <!-- Specular Glass Highlights (Left & Right Curves) -->
+              <path d="M62 42 C62 82, 95 108, 102 132" stroke="rgba(255,255,255,0.45)" stroke-width="2.2" stroke-linecap="round" fill="none" />
+              <path d="M62 238 C62 198, 95 172, 102 148" stroke="rgba(255,255,255,0.35)" stroke-width="2.2" stroke-linecap="round" fill="none" />
+              <path d="M158 42 C158 82, 125 108, 118 132" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round" fill="none" />
+
+              <!-- Floating Stardust Motes inside Bulbs -->
+              <circle cx="88" cy="64" r="2.2" fill="#38bdf8" class="stardust-mote" />
+              <circle cx="132" cy="58" r="2.6" fill="#fbbf24" class="stardust-mote" style="animation-delay: 0.8s" />
+              <circle cx="110" cy="50" r="1.8" fill="#c084fc" class="stardust-mote" style="animation-delay: 1.5s" />
+              <circle cx="92" cy="202" r="2.3" fill="#fde047" class="stardust-mote" style="animation-delay: 0.4s" />
+              <circle cx="128" cy="196" r="2.0" fill="#fb7185" class="stardust-mote" style="animation-delay: 1.1s" />
+              <circle cx="102" cy="166" r="1.7" fill="#fef08a" class="stardust-mote" style="animation-delay: 1.9s" />
+
+            </svg>
+            <!-- YTC Logo in front of the Hourglass Center (Replaces the old 8Y circle) -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <img src="https://ik.imagekit.io/akf/LogoYTC.png?updatedAt=1791206527381"
+                   alt="Logo CLB Truyền Thông YTC"
+                   draggable="false"
+                   class="w-24 h-24 object-contain drop-shadow-[0_0_20px_rgba(251,191,36,0.9)] drop-shadow-[0_4px_14px_rgba(0,0,0,0.95)] transition-transform duration-500 group-hover:scale-110" />
+            </div>
+          </div>
+
+          <!-- Bottom Title & Stats Pedestal -->
+          <div class="mt-2 px-6 py-3 rounded-2xl bg-slate-950/88 border border-amber-400/45 backdrop-blur-md shadow-[0_0_50px_rgba(245,158,11,0.3)] flex flex-col items-center">
+            <span class="font-display font-extrabold text-2xl sm:text-3xl text-white tracking-tight leading-none">8 NĂM KÝ ỨC</span>
+            <span class="text-xs font-semibold text-amber-300 mt-1">CLB Truyền Thông YTC</span>
+            <div class="mt-1.5 flex items-center gap-2">
+              <span class="text-[10px] text-slate-200 px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/30">${memoryNodes.length} Mảnh Ký Ức</span>
+              <span class="text-[10px] text-sky-300 px-2.5 py-0.5 rounded-full bg-sky-500/15 border border-sky-400/30">Click để xoay đồng hồ cát ⏳</span>
+            </div>
+          </div>
+        `;
+        coreEl.addEventListener('click', (e) => {
+          e.stopPropagation();
+          hourglassFlipDeg += 180;
+          const hgSvg = coreEl.querySelector('#central-hourglass-svg');
+          if (hgSvg) {
+            hgSvg.style.transform = `rotate(${hourglassFlipDeg}deg)`;
+          }
+          flyTo(0, 0, 0.44);
+          showToast('⏳ Đã xoay Đồng Hồ Cát Ký Ức 8 Năm tại Tâm Vũ Trụ!');
+        });
+        staticLandmarksContainer.appendChild(coreEl);
+
+        // 2. Four Cardinal Direction Gateways in World Space (BẮC, ĐÔNG, NAM, TÂY)
+        const cardinalWorldMarkers = [
+          { label: 'HƯỚNG BẮC · THƯỢNG VŨ TRỤ', sub: 'Tinh Vân Khởi Nguyên & Bứt Phá', x: 0, y: -1150, color: '#38bdf8' },
+          { label: 'HƯỚNG ĐÔNG · ĐÔNG VŨ TRỤ', sub: 'Tinh Vân Gieo Mầm & Lan Tỏa', x: 1150, y: 0, color: '#34d399' },
+          { label: 'HƯỚNG NAM · HẠ VŨ TRỤ', sub: 'Tinh Vân Vươn Mình & Rực Rỡ', x: 0, y: 1150, color: '#fb7185' },
+          { label: 'HƯỚNG TÂY · TÂY VŨ TRỤ', sub: 'Tinh Vân Dấu Ấn & Hội Tụ 8 Năm', x: -1150, y: 0, color: '#c084fc' }
+        ];
+        cardinalWorldMarkers.forEach(m => {
+          const el = document.createElement('div');
+          el.className = 'direction-beacon';
+          el.style.left = m.x + 'px';
+          el.style.top = m.y + 'px';
+          el.innerHTML = `
+            <div class="px-4 py-2 rounded-2xl bg-slate-950/75 border border-white/15 backdrop-blur-md shadow-lg">
+              <div class="text-xs font-display font-bold tracking-widest uppercase" style="color:${m.color}">${m.label}</div>
+              <div class="text-[10px] text-slate-400 mt-0.5">${m.sub}</div>
+            </div>
+          `;
+          staticLandmarksContainer.appendChild(el);
+        });
+
+        // 3. Eight Year Nebula Beacons (NĂM 1 .. NĂM 8)
+        Object.keys(yearHubs).forEach(gid => {
+          const hub = yearHubs[gid];
+          const m = hub.meta;
+          const beacon = document.createElement('div');
+          beacon.className = 'year-beacon';
+          beacon.style.left = Math.round(hub.x) + 'px';
+          beacon.style.top = Math.round(hub.y) + 'px';
+          beacon.innerHTML = `
+            <div class="px-5 py-3 rounded-2xl bg-slate-950/85 backdrop-blur-md border-2 shadow-2xl flex flex-col items-center gap-0.5" style="border-color:${m.color}; box-shadow: 0 0 42px ${m.glow};">
+              <span class="text-[10px] font-mono uppercase tracking-widest text-slate-300">${m.directionName}</span>
+              <span class="font-display font-extrabold text-xl tracking-wide text-white">${m.label}</span>
+              <span class="text-xs font-medium text-slate-200">${m.title}</span>
+              <span class="mt-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/10 text-white">${hub.count} ảnh ký ức</span>
+            </div>
+          `;
+          beacon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setYearFilter(gid, true);
+          });
+          staticLandmarksContainer.appendChild(beacon);
+        });
+      }
+
+      // --- 5. CAMERA (PAN, ZOOM, INERTIA, SMOOTH FLY-TO) ---
+      const viewportEl = document.getElementById('universe-viewport');
+      const zoomSlider = document.getElementById('zoom-slider');
+      const hudZoomPct = document.getElementById('hud-zoom-pct');
+      const hudCoords = document.getElementById('hud-coords');
+      const hudSector = document.getElementById('hud-current-sector');
+      const hudVisibleCount = document.getElementById('hud-visible-count');
+
+      const cam = {
+        x: 0,       // World X at center of screen
+        y: 0,       // World Y at center of screen
+        zoom: 0.34,
+        vx: 0,
+        vy: 0,
+        isDragging: false,
+        dragStartX: 0,
+        dragStartY: 0,
+        camStartX: 0,
+        camStartY: 0,
+        flyAnim: null
+      };
+
+      const MIN_ZOOM = 0.07;
+      const MAX_ZOOM = 1.85;
+
+      function flyTo(targetX, targetY, targetZoom, duration = 850) {
+        const startX = cam.x;
+        const startY = cam.y;
+        const startZoom = cam.zoom;
+        const endZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, targetZoom !== undefined ? targetZoom : cam.zoom));
+        const startTime = performance.now();
+        cam.vx = 0;
+        cam.vy = 0;
+
+        cam.flyAnim = function(now) {
+          const elapsed = now - startTime;
+          const t = Math.min(1, elapsed / duration);
+          // Ease out cubic
+          const ease = 1 - Math.pow(1 - t, 3);
+          cam.x = startX + (targetX - startX) * ease;
+          cam.y = startY + (targetY - startY) * ease;
+          cam.zoom = startZoom + (endZoom - startZoom) * ease;
+          if (t >= 1) {
+            cam.flyAnim = null;
+          }
+        };
+      }
+
+      // Pointer & Touch Pan/Pinch Handlers
+      let pointerDownMoved = false;
+      let activePointers = new Map();
+      let lastPinchDist = null;
+
+      viewportEl.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('button')) return;
+        activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+        cam.flyAnim = null;
+
+        if (activePointers.size === 1) {
+          cam.isDragging = true;
+          pointerDownMoved = false;
+          cam.dragStartX = e.clientX;
+          cam.dragStartY = e.clientY;
+          cam.camStartX = cam.x;
+          cam.camStartY = cam.y;
+          cam.vx = 0;
+          cam.vy = 0;
+          viewportEl.classList.add('dragging');
+        } else if (activePointers.size === 2) {
+          const pts = Array.from(activePointers.values());
+          lastPinchDist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+        }
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (!activePointers.has(e.pointerId)) return;
+        const prev = activePointers.get(e.pointerId);
+        activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+        if (activePointers.size === 2) {
+          const pts = Array.from(activePointers.values());
+          const dist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+          if (lastPinchDist && lastPinchDist > 10) {
+            const scaleFactor = dist / lastPinchDist;
+            const midX = (pts[0].x + pts[1].x) / 2;
+            const midY = (pts[0].y + pts[1].y) / 2;
+            zoomAtScreenPoint(cam.zoom * scaleFactor, midX, midY);
+          }
+          lastPinchDist = dist;
+          pointerDownMoved = true;
+          return;
+        }
+
+        if (!cam.isDragging) return;
+        const dx = e.clientX - cam.dragStartX;
+        const dy = e.clientY - cam.dragStartY;
+        if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+          pointerDownMoved = true;
+        }
+
+        const stepX = (e.clientX - prev.x) / cam.zoom;
+        const stepY = (e.clientY - prev.y) / cam.zoom;
+        cam.vx = -stepX * 0.65;
+        cam.vy = -stepY * 0.65;
+
+        cam.x = cam.camStartX - dx / cam.zoom;
+        cam.y = cam.camStartY - dy / cam.zoom;
+      });
+
+      function endPointer(e) {
+        activePointers.delete(e.pointerId);
+        if (activePointers.size < 2) lastPinchDist = null;
+        if (activePointers.size === 0) {
+          cam.isDragging = false;
+          viewportEl.classList.remove('dragging');
+        }
+      }
+      window.addEventListener('pointerup', endPointer);
+      window.addEventListener('pointercancel', endPointer);
+
+      function zoomAtScreenPoint(newZoom, screenX, screenY) {
+        const clamped = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newZoom));
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        // World coordinate under cursor before zoom
+        const worldX = cam.x + (screenX - vw / 2) / cam.zoom;
+        const worldY = cam.y + (screenY - vh / 2) / cam.zoom;
+        cam.zoom = clamped;
+        // Adjust cam.x, cam.y so worldX, worldY stays under screenX, screenY
+        cam.x = worldX - (screenX - vw / 2) / cam.zoom;
+        cam.y = worldY - (screenY - vh / 2) / cam.zoom;
+      }
+
+      viewportEl.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        cam.flyAnim = null;
+        const zoomFactor = Math.exp(-e.deltaY * 0.0014);
+        zoomAtScreenPoint(cam.zoom * zoomFactor, e.clientX, e.clientY);
+      }, { passive: false });
+
+      // --- 6. FRUSTUM CULLING & VIRTUAL CARD MOUNTING ---
+      let lastCullCamX = Infinity;
+      let lastCullCamY = Infinity;
+      let lastCullZoom = Infinity;
+
+      function createCardElement(node) {
+        const el = document.createElement('div');
+        el.className = 'memory-card';
+        el.style.width = node.w + 'px';
+        el.style.height = node.h + 'px';
+        el.style.setProperty('--card-color', node.yearMeta.color);
+        el.style.setProperty('--card-glow', node.yearMeta.glow);
+        el.style.transform = `translate3d(${node.x - node.w / 2}px, ${node.y - node.h / 2}px, 0) rotate(${node.rotation}deg) scale(${node.scaleDepth})`;
+
+        const isFav = !!favoritesMap[node.id];
+        const hasNote = !!notesMap[node.id];
+
+        // Notice: Strictly NO URL or filePath attribute exposed in titles or badges!
+        el.innerHTML = `
+          <div class="thumb-wrap">
+            <img src="${node.thumbUrl}" alt="Ký ức ${node.yearMeta.label}" loading="lazy" decoding="async" draggable="false" oncontextmenu="return false;" />
+            <div class="card-badge">
+              <span class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full" style="background:${node.yearMeta.color}"></span>
+                <span>${node.yearMeta.label}</span>
+              </span>
+              <span class="font-mono text-[10px] text-slate-300">#${node.serialNumber} ${isFav ? '❤️' : ''}${hasNote ? '📝' : ''}</span>
+            </div>
+          </div>
+        `;
+
+        const imgEl = el.querySelector('img');
+        imgEl.addEventListener('load', () => {
+          imgEl.classList.add('loaded');
+        });
+
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (pointerDownMoved) return;
+          openMemoryLightbox(node.index);
+        });
+
+        return el;
+      }
+
+      function isNodeMatchingFilter(node) {
+        if (activeFilter === 'all') return true;
+        if (activeFilter === 'fav') return !!favoritesMap[node.id];
+        return node.groupId === activeFilter;
+      }
+
+      function syncVisibleCards(force = false) {
+        const dx = Math.abs(cam.x - lastCullCamX);
+        const dy = Math.abs(cam.y - lastCullCamY);
+        const dz = Math.abs(cam.zoom - lastCullZoom);
+        if (!force && dx < 120 && dy < 120 && dz < 0.02) return;
+
+        lastCullCamX = cam.x;
+        lastCullCamY = cam.y;
+        lastCullZoom = cam.zoom;
+
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        // World bounding box with generous margin so cards preload smoothly before entering screen
+        const marginWorld = 900 / Math.max(0.12, cam.zoom);
+        const minX = cam.x - (vw / 2) / cam.zoom - marginWorld;
+        const maxX = cam.x + (vw / 2) / cam.zoom + marginWorld;
+        const minY = cam.y - (vh / 2) / cam.zoom - marginWorld;
+        const maxY = cam.y + (vh / 2) / cam.zoom + marginWorld;
+
+        const shouldBeMounted = new Set();
+        let visibleCount = 0;
+
+        for (let i = 0; i < memoryNodes.length; i++) {
+          const n = memoryNodes[i];
+          if (!isNodeMatchingFilter(n)) continue;
+          if (n.x >= minX && n.x <= maxX && n.y >= minY && n.y <= maxY) {
+            shouldBeMounted.add(n.id);
+            visibleCount++;
+          }
+        }
+
+        // Unmount out-of-frustum cards
+        for (const [id, el] of mountedCardElements.entries()) {
+          if (!shouldBeMounted.has(id)) {
+            el.remove();
+            mountedCardElements.delete(id);
+          }
+        }
+
+        // Mount newly visible cards
+        for (let i = 0; i < memoryNodes.length; i++) {
+          const n = memoryNodes[i];
+          if (shouldBeMounted.has(n.id) && !mountedCardElements.has(n.id)) {
+            const el = createCardElement(n);
+            cardsContainer.appendChild(el);
+            mountedCardElements.set(n.id, el);
+          }
+        }
+
+        hudVisibleCount.textContent = `Hiện: ${visibleCount}/${memoryNodes.length} ảnh`;
+      }
+
+      // --- 7. STARFIELD, NEBULAE & CONSTELLATION CANVAS + MINIMAP ---
+      const starCanvas = document.getElementById('starfield-canvas');
+      const starCtx = starCanvas.getContext('2d');
+      const miniCanvas = document.getElementById('minimap-canvas');
+      const miniCtx = miniCanvas ? miniCanvas.getContext('2d') : null;
+
+      const bgStars = [];
+      for (let i = 0; i < 260; i++) {
+        bgStars.push({
+          x: (Math.random() - 0.5) * 6000,
+          y: (Math.random() - 0.5) * 6000,
+          size: 0.6 + Math.random() * 1.8,
+          parallax: 0.08 + Math.random() * 0.25,
+          alpha: 0.25 + Math.random() * 0.75,
+          twinkleSpeed: 0.001 + Math.random() * 0.003
+        });
+      }
+
+      function resizeCanvas() {
+        starCanvas.width = window.innerWidth;
+        starCanvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        syncVisibleCards(true);
+      });
+      resizeCanvas();
+
+      function renderBackgroundAndMinimap(now) {
+        const vw = starCanvas.width;
+        const vh = starCanvas.height;
+        starCtx.clearRect(0, 0, vw, vh);
+
+        // Deep cosmic radial gradient
+        const grad = starCtx.createRadialGradient(vw / 2, vh / 2, 40, vw / 2, vh / 2, Math.max(vw, vh) * 0.75);
+        grad.addColorStop(0, '#0a1128');
+        grad.addColorStop(0.55, '#050814');
+        grad.addColorStop(1, '#02040a');
+        starCtx.fillStyle = grad;
+        starCtx.fillRect(0, 0, vw, vh);
+
+        // Parallax Twinkling Stars
+        for (let i = 0; i < bgStars.length; i++) {
+          const s = bgStars[i];
+          let sx = ((s.x - cam.x * s.parallax) % vw + vw) % vw;
+          let sy = ((s.y - cam.y * s.parallax) % vh + vh) % vh;
+          const twinkle = 0.55 + 0.45 * Math.sin(now * s.twinkleSpeed + i);
+          starCtx.fillStyle = `rgba(226, 232, 240, ${(s.alpha * twinkle).toFixed(2)})`;
+          starCtx.beginPath();
+          starCtx.arc(sx, sy, s.size, 0, Math.PI * 2);
+          starCtx.fill();
+        }
+
+        // World-space Nebulae & Constellation Lines
+        starCtx.save();
+        starCtx.translate(vw / 2 - cam.x * cam.zoom, vh / 2 - cam.y * cam.zoom);
+        starCtx.scale(cam.zoom, cam.zoom);
+
+        // 4-Direction Axis Rays from Origin (0,0)
+        starCtx.strokeStyle = 'rgba(148, 163, 184, 0.09)';
+        starCtx.lineWidth = 2 / cam.zoom;
+        starCtx.setLineDash([16 / cam.zoom, 16 / cam.zoom]);
+        starCtx.beginPath();
+        starCtx.moveTo(-10000, 0); starCtx.lineTo(10000, 0);
+        starCtx.moveTo(0, -10000); starCtx.lineTo(0, 10000);
+        starCtx.stroke();
+        starCtx.setLineDash([]);
+
+        // Glowing Nebula clouds at each Year Hub
+        Object.keys(yearHubs).forEach(gid => {
+          if (activeFilter !== 'all' && activeFilter !== 'fav' && activeFilter !== gid) return;
+          const hub = yearHubs[gid];
+          const r = 1350;
+          const neb = starCtx.createRadialGradient(hub.x, hub.y, 40, hub.x, hub.y, r);
+          neb.addColorStop(0, hub.meta.glow.replace('0.55', '0.16'));
+          neb.addColorStop(1, 'rgba(0,0,0,0)');
+          starCtx.fillStyle = neb;
+          starCtx.beginPath();
+          starCtx.arc(hub.x, hub.y, r, 0, Math.PI * 2);
+          starCtx.fill();
+        });
+
+        // Constellation Filaments connecting memories
+        if (appConfig.showConstellations) {
+          starCtx.lineWidth = 1.4 / Math.max(0.25, cam.zoom);
+          for (let i = 0; i < constellationEdges.length; i++) {
+            const edge = constellationEdges[i];
+            if (activeFilter !== 'all' && activeFilter !== 'fav' && activeFilter !== edge.groupId) continue;
+            starCtx.strokeStyle = edge.color + '28';
+            starCtx.beginPath();
+            starCtx.moveTo(edge.x1, edge.y1);
+            starCtx.lineTo(edge.x2, edge.y2);
+            starCtx.stroke();
+          }
+        }
+
+        // When zoomed very far out (zoom < 0.22), draw glowing star nodes for every memory so the entire galaxy shimmers
+        if (cam.zoom < 0.25) {
+          for (let i = 0; i < memoryNodes.length; i++) {
+            const n = memoryNodes[i];
+            if (!isNodeMatchingFilter(n)) continue;
+            starCtx.fillStyle = n.yearMeta.color;
+            starCtx.beginPath();
+            starCtx.arc(n.x, n.y, 18, 0, Math.PI * 2);
+            starCtx.fill();
+          }
+        }
+
+        starCtx.restore();
+
+        // Render Radar Minimap
+        if (miniCtx) {
+          const mw = miniCanvas.width;
+          const mh = miniCanvas.height;
+          const worldSpan = 17500; // -8750 to +8750
+          miniCtx.clearRect(0, 0, mw, mh);
+
+          // Crosshair axes (4 directions)
+          miniCtx.strokeStyle = 'rgba(255,255,255,0.08)';
+          miniCtx.lineWidth = 1;
+          miniCtx.beginPath();
+          miniCtx.moveTo(mw / 2, 0); miniCtx.lineTo(mw / 2, mh);
+          miniCtx.moveTo(0, mh / 2); miniCtx.lineTo(mw, mh / 2);
+          miniCtx.stroke();
+
+          // Dots for all memory nodes
+          for (let i = 0; i < memoryNodes.length; i++) {
+            const n = memoryNodes[i];
+            if (!isNodeMatchingFilter(n)) continue;
+            const mx = mw / 2 + (n.x / worldSpan) * mw;
+            const my = mh / 2 + (n.y / worldSpan) * mh;
+            miniCtx.fillStyle = n.yearMeta.color;
+            miniCtx.fillRect(mx - 1.2, my - 1.2, 2.4, 2.4);
+          }
+
+          // Center Hourglass icon on Minimap
+          miniCtx.fillStyle = '#f59e0b';
+          miniCtx.beginPath();
+          miniCtx.moveTo(mw / 2 - 4, mh / 2 - 4.5);
+          miniCtx.lineTo(mw / 2 + 4, mh / 2 - 4.5);
+          miniCtx.lineTo(mw / 2 - 4, mh / 2 + 4.5);
+          miniCtx.lineTo(mw / 2 + 4, mh / 2 + 4.5);
+          miniCtx.closePath();
+          miniCtx.fill();
+
+          // Current Viewport Rectangle on Minimap
+          const viewWorldW = vw / cam.zoom;
+          const viewWorldH = vh / cam.zoom;
+          const rx = mw / 2 + ((cam.x - viewWorldW / 2) / worldSpan) * mw;
+          const ry = mh / 2 + ((cam.y - viewWorldH / 2) / worldSpan) * mh;
+          const rw = (viewWorldW / worldSpan) * mw;
+          const rh = (viewWorldH / worldSpan) * mh;
+
+          miniCtx.strokeStyle = '#f59e0b';
+          miniCtx.lineWidth = 1.5;
+          miniCtx.strokeRect(
+            Math.max(1, Math.min(mw - 4, rx)),
+            Math.max(1, Math.min(mh - 4, ry)),
+            Math.max(6, Math.min(mw - 2, rw)),
+            Math.max(6, Math.min(mh - 2, rh))
+          );
+        }
+      }
+
+      // Click on Minimap to fly directly to that region
+      if (miniCanvas) {
+        miniCanvas.addEventListener('click', (e) => {
+          const rect = miniCanvas.getBoundingClientRect();
+          const cx = e.clientX - rect.left;
+          const cy = e.clientY - rect.top;
+          const worldSpan = 17500;
+          const targetX = ((cx - miniCanvas.width / 2) / miniCanvas.width) * worldSpan;
+          const targetY = ((cy - miniCanvas.height / 2) / miniCanvas.height) * worldSpan;
+          flyTo(targetX, targetY, Math.max(cam.zoom, 0.32), 650);
+        });
+      }
+
+      // --- 8. MAIN ANIMATION LOOP ---
+      const keysPressed = {};
+
+      function animate(now) {
+        if (cam.flyAnim) {
+          cam.flyAnim(now);
+        } else if (!cam.isDragging) {
+          // Keyboard pan (WASD / Arrow keys)
+          const panSpeed = 14 / cam.zoom;
+          if (keysPressed['ArrowUp'] || keysPressed['KeyW']) cam.y -= panSpeed;
+          if (keysPressed['ArrowDown'] || keysPressed['KeyS']) cam.y += panSpeed;
+          if (keysPressed['ArrowLeft'] || keysPressed['KeyA']) cam.x -= panSpeed;
+          if (keysPressed['ArrowRight'] || keysPressed['KeyD']) cam.x += panSpeed;
+
+          // Inertia decay
+          if (Math.abs(cam.vx) > 0.1 || Math.abs(cam.vy) > 0.1) {
+            cam.x += cam.vx;
+            cam.y += cam.vy;
+            cam.vx *= 0.91;
+            cam.vy *= 0.91;
+          }
+        }
+
+        // Clamp camera bounds so user never gets lost in infinite void
+        cam.x = Math.max(-9800, Math.min(9800, cam.x));
+        cam.y = Math.max(-9800, Math.min(9800, cam.y));
+
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const tx = vw / 2 - cam.x * cam.zoom;
+        const ty = vh / 2 - cam.y * cam.zoom;
+        worldLayer.style.transform = `translate3d(${tx.toFixed(1)}px, ${ty.toFixed(1)}px, 0) scale(${cam.zoom.toFixed(4)})`;
+
+        // Update HUD Telemetry
+        zoomSlider.value = cam.zoom;
+        hudZoomPct.textContent = Math.round(cam.zoom * 100) + '%';
+        hudCoords.textContent = `X: ${Math.round(cam.x)} · Y: ${Math.round(cam.y)}`;
+
+        const distFromOrigin = Math.hypot(cam.x, cam.y);
+        hudSector.textContent = distFromOrigin < 650 ? 'Tâm Vũ Trụ' : getDirectionLabelFromCoords(cam.x, cam.y);
+
+        syncVisibleCards(false);
+        renderBackgroundAndMinimap(now);
+
+        requestAnimationFrame(animate);
+      }
+
+      // --- 9. YEAR FILTER BAR & NAVIGATION CONTROLS ---
+      function renderYearFilterBar() {
+        const bar = document.getElementById('year-filter-bar');
+        bar.innerHTML = '';
+
+        // "Tất Cả 8 Năm" button
+        const allBtn = document.createElement('button');
+        allBtn.type = 'button';
+        allBtn.className = `glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap flex items-center gap-1.5 ${activeFilter === 'all' ? 'active text-amber-300' : 'text-slate-300'}`;
+        allBtn.innerHTML = `<span>🌌 Tất Cả 8 Năm</span><span class="text-[10px] px-1.5 py-0.2 rounded-full bg-white/10">${memoryNodes.length}</span>`;
+        allBtn.addEventListener('click', () => setYearFilter('all', true));
+        bar.appendChild(allBtn);
+
+        // 8 Year buttons
+        Object.keys(YEAR_META).forEach(gid => {
+          const meta = YEAR_META[gid];
+          const count = yearHubs[gid] ? yearHubs[gid].count : 0;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap flex items-center gap-1.5 ${activeFilter === gid ? 'active text-white' : 'text-slate-300'}`;
+          btn.innerHTML = `
+            <span class="w-2 h-2 rounded-full" style="background:${meta.color}"></span>
+            <span>${meta.label}</span>
+            <span class="text-[10px] text-slate-400 font-mono">(${count})</span>
+          `;
+          btn.addEventListener('click', () => setYearFilter(gid, true));
+          bar.appendChild(btn);
+        });
+
+        // Favorites button
+        const favCount = Object.keys(favoritesMap).filter(k => favoritesMap[k]).length;
+        const favBtn = document.createElement('button');
+        favBtn.type = 'button';
+        favBtn.className = `glass-pill px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap flex items-center gap-1.5 ${activeFilter === 'fav' ? 'active text-rose-300' : 'text-slate-300'}`;
+        favBtn.innerHTML = `<span>❤️ Tinh Tú Đã Lưu (${favCount})</span>`;
+        favBtn.addEventListener('click', () => setYearFilter('fav', true));
+        bar.appendChild(favBtn);
+      }
+
+      function setYearFilter(filterId, shouldFly = false) {
+        activeFilter = filterId;
+        renderYearFilterBar();
+        syncVisibleCards(true);
+
+        if (shouldFly) {
+          if (filterId === 'all') {
+            flyTo(0, 0, 0.22);
+          } else if (filterId === 'fav') {
+            const favNode = memoryNodes.find(n => favoritesMap[n.id]);
+            if (favNode) {
+              flyTo(favNode.x, favNode.y, 0.55);
+            } else {
+              showToast('Chưa có mảnh ký ức nào được lưu vào Tinh Tú ❤️');
+            }
+          } else if (yearHubs[filterId]) {
+            const hub = yearHubs[filterId];
+            flyTo(hub.x, hub.y, 0.36);
+            showToast(`Đang bay tới tinh vân ${hub.meta.label} (${hub.meta.directionName})`);
+          }
+        }
+      }
+
+      // --- 10. LIGHTBOX VIEWER (HIDES IMAGE LINK / FILEPATH COMPLETELY) ---
+      const lightboxEl = document.getElementById('memory-lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxSpinner = document.getElementById('lightbox-spinner');
+      const lbYearBadge = document.getElementById('lb-year-badge');
+      const lbDirectionBadge = document.getElementById('lb-direction-badge');
+      const lbMemoryTitle = document.getElementById('lb-memory-title');
+      const lbChapterSubtitle = document.getElementById('lb-chapter-subtitle');
+      const lbCoords = document.getElementById('lb-coords');
+      const lbDimensions = document.getElementById('lb-dimensions');
+      const lbNoteInput = document.getElementById('lb-note-input');
+      const lbNoteSavedMsg = document.getElementById('lb-note-saved-msg');
+      const iconHeart = document.getElementById('icon-heart');
+      const labelFavorite = document.getElementById('label-favorite');
+
+      function openMemoryLightbox(nodeIndex) {
+        const node = memoryNodes[nodeIndex];
+        if (!node) return;
+        activeLightboxIndex = nodeIndex;
+
+        lightboxEl.classList.remove('hidden');
+        lightboxEl.classList.add('flex');
+
+        lightboxImg.classList.remove('opacity-100');
+        lightboxImg.classList.add('opacity-0');
+        lightboxSpinner.classList.remove('hidden');
+
+        // Load high-res image first, fallback to thumbUrl if needed
+        lightboxImg.onload = () => {
+          lightboxSpinner.classList.add('hidden');
+          lightboxImg.classList.remove('opacity-0');
+          lightboxImg.classList.add('opacity-100');
+        };
+        lightboxImg.onerror = () => {
+          if (lightboxImg.src !== node.thumbUrl) {
+            lightboxImg.src = node.thumbUrl;
+          }
+        };
+        lightboxImg.src = node.fullUrl;
+
+        // Populate strictly non-URL metadata
+        lbYearBadge.textContent = node.yearMeta.label;
+        lbYearBadge.style.borderColor = node.yearMeta.color;
+        lbYearBadge.style.color = node.yearMeta.color;
+        lbDirectionBadge.textContent = node.directionText;
+
+        lbMemoryTitle.textContent = `Mảnh Ký Ức #${node.serialNumber}`;
+        lbChapterSubtitle.textContent = `${node.yearMeta.label}: ${node.yearMeta.title} · CLB Truyền Thông YTC`;
+        lbCoords.textContent = `X: ${node.x >= 0 ? '+' + node.x : node.x} · Y: ${node.y >= 0 ? '+' + node.y : node.y}`;
+        lbDimensions.textContent = `${node.imgWidth} × ${node.imgHeight} px`;
+
+        lbNoteInput.value = notesMap[node.id] || '';
+        lbNoteSavedMsg.classList.add('opacity-0');
+
+        updateLightboxFavoriteUI(node.id);
+      }
+
+      function updateLightboxFavoriteUI(nodeId) {
+        const isFav = !!favoritesMap[nodeId];
+        if (isFav) {
+          iconHeart.setAttribute('fill', 'currentColor');
+          labelFavorite.textContent = 'Đã Lưu Tinh Tú ❤️';
+        } else {
+          iconHeart.setAttribute('fill', 'none');
+          labelFavorite.textContent = 'Lưu Tinh Tú';
+        }
+      }
+
+      function closeMemoryLightbox() {
+        lightboxEl.classList.add('hidden');
+        lightboxEl.classList.remove('flex');
+        lightboxImg.src = '';
+        activeLightboxIndex = -1;
+      }
+
+      function stepLightbox(delta) {
+        if (activeLightboxIndex < 0 || memoryNodes.length === 0) return;
+        const nextIdx = (activeLightboxIndex + delta + memoryNodes.length) % memoryNodes.length;
+        openMemoryLightbox(nextIdx);
+      }
+
+      document.getElementById('btn-close-lightbox').addEventListener('click', closeMemoryLightbox);
+      document.getElementById('btn-prev-memory').addEventListener('click', () => stepLightbox(-1));
+      document.getElementById('btn-next-memory').addEventListener('click', () => stepLightbox(1));
+
+      lightboxEl.addEventListener('click', (e) => {
+        if (e.target === lightboxEl) closeMemoryLightbox();
+      });
+
+      document.getElementById('btn-save-note').addEventListener('click', () => {
+        if (activeLightboxIndex < 0) return;
+        const node = memoryNodes[activeLightboxIndex];
+        const val = lbNoteInput.value.trim();
+        if (val) {
+          notesMap[node.id] = val;
+        } else {
+          delete notesMap[node.id];
+        }
+        try {
+          localStorage.setItem('ytc_cosmos_notes_v1', JSON.stringify(notesMap));
+        } catch (err) {}
+        lbNoteSavedMsg.classList.remove('opacity-0');
+        setTimeout(() => lbNoteSavedMsg.classList.add('opacity-0'), 2200);
+        // Re-render card badge if mounted
+        if (mountedCardElements.has(node.id)) {
+          mountedCardElements.get(node.id).remove();
+          mountedCardElements.delete(node.id);
+          syncVisibleCards(true);
+        }
+      });
+
+      document.getElementById('btn-favorite-memory').addEventListener('click', () => {
+        if (activeLightboxIndex < 0) return;
+        const node = memoryNodes[activeLightboxIndex];
+        favoritesMap[node.id] = !favoritesMap[node.id];
+        if (!favoritesMap[node.id]) delete favoritesMap[node.id];
+        try {
+          localStorage.setItem('ytc_cosmos_favs_v1', JSON.stringify(favoritesMap));
+        } catch (err) {}
+        updateLightboxFavoriteUI(node.id);
+        renderYearFilterBar();
+        if (mountedCardElements.has(node.id)) {
+          mountedCardElements.get(node.id).remove();
+          mountedCardElements.delete(node.id);
+          syncVisibleCards(true);
+        }
+      });
+
+      document.getElementById('btn-focus-in-universe').addEventListener('click', () => {
+        if (activeLightboxIndex < 0) return;
+        const node = memoryNodes[activeLightboxIndex];
+        closeMemoryLightbox();
+        flyTo(node.x, node.y, 0.85, 900);
+        showToast(`Đã định vị Mảnh Ký Ức #${node.serialNumber} (${node.directionText})`);
+      });
+
+      // --- 11. HIDDEN IMAGEKIT CONFIG MODAL & KEYBOARD SHORTCUTS ---
+      const configModal = document.getElementById('imagekit-config-modal');
+      const cfgEndpoint = document.getElementById('cfg-endpoint');
+      const cfgRootPath = document.getElementById('cfg-rootpath');
+      const cfgTransform = document.getElementById('cfg-transform');
+      const cfgMinDist = document.getElementById('cfg-min-dist');
+      const cfgManifestJson = document.getElementById('cfg-manifest-json');
+      const cfgFileUpload = document.getElementById('cfg-file-upload');
+
+      function toggleImageKitConfigModal() {
+        const isHidden = configModal.classList.contains('hidden');
+        if (isHidden) {
+          cfgEndpoint.value = appConfig.endpoint;
+          cfgRootPath.value = appConfig.rootPath;
+          cfgTransform.value = appConfig.thumbTransform;
+          cfgMinDist.value = appConfig.minDistance;
+          configModal.classList.remove('hidden');
+          configModal.classList.add('flex');
+          showToast('Đã mở bảng Cấu hình ImageKit (Phím tắt: Ctrl+Shift+K / Alt+K / F9)');
+        } else {
+          configModal.classList.add('hidden');
+          configModal.classList.remove('flex');
+        }
+      }
+
+      document.getElementById('btn-close-config').addEventListener('click', () => {
+        configModal.classList.add('hidden');
+        configModal.classList.remove('flex');
+      });
+
+      configModal.addEventListener('click', (e) => {
+        if (e.target === configModal) {
+          configModal.classList.add('hidden');
+          configModal.classList.remove('flex');
+        }
+      });
+
+      function parseManifestInput(rawText) {
+        const trimmed = rawText.trim();
+        if (!trimmed) return null;
+        // Support both raw JSON and `window.YTC_MEDIA_MANIFEST = { ... };`
+        const match = trimmed.match(/window\.YTC_MEDIA_MANIFEST\s*=\s*(\{[\s\S]*\})\s*;?$/);
+        const jsonStr = match ? match[1] : trimmed;
+        return JSON.parse(jsonStr);
+      }
+
+      cfgFileUpload.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          cfgManifestJson.value = ev.target.result;
+          showToast(`Đã nạp nội dung từ file ${file.name}`);
+        };
+        reader.readAsText(file);
+      });
+
+      document.getElementById('btn-apply-config').addEventListener('click', () => {
+        appConfig.endpoint = cfgEndpoint.value.trim() || 'https://ik.imagekit.io/akf';
+        appConfig.rootPath = cfgRootPath.value.trim() || '/YTC_Memories';
+        appConfig.thumbTransform = cfgTransform.value.trim() || 'tr:w-640,q-72';
+        appConfig.minDistance = Math.max(260, Math.min(1200, Number(cfgMinDist.value) || 460));
+
+        const rawManifest = cfgManifestJson.value.trim();
+        if (rawManifest) {
+          try {
+            const parsed = parseManifestInput(rawManifest);
+            if (parsed && Array.isArray(parsed.files)) {
+              window.YTC_MEDIA_MANIFEST = parsed;
+              if (parsed.endpoint) appConfig.endpoint = parsed.endpoint;
+              if (parsed.rootPath) appConfig.rootPath = parsed.rootPath;
+              try {
+                localStorage.setItem('ytc_cosmos_custom_manifest_v1', JSON.stringify(parsed));
+              } catch (err) {}
+            } else {
+              showToast('Cấu trúc dữ liệu không hợp lệ (cần có mảng files)');
+              return;
+            }
+          } catch (err) {
+            showToast('Lỗi cú pháp JSON / images.js. Vui lòng kiểm tra lại!');
+            return;
+          }
+        }
+
+        saveConfigState();
+        generateUniverseLayout();
+        configModal.classList.add('hidden');
+        configModal.classList.remove('flex');
+        showToast('Đã cập nhật cấu hình ImageKit & tái tạo Vũ Trụ Ký Ức!');
+      });
+
+      document.getElementById('btn-reset-config').addEventListener('click', () => {
+        window.YTC_MEDIA_MANIFEST = JSON.parse(JSON.stringify(DEFAULT_MANIFEST));
+        appConfig = {
+          endpoint: DEFAULT_MANIFEST.endpoint || 'https://ik.imagekit.io/akf',
+          rootPath: DEFAULT_MANIFEST.rootPath || '/YTC_Memories',
+          thumbTransform: 'tr:w-800,q-80',
+          minDistance: 620,
+          scatterMode: 'free4',
+          showConstellations: true,
+          seed: 202608
+        };
+        cfgManifestJson.value = '';
+        try {
+          localStorage.removeItem('ytc_cosmos_config_v2');
+          localStorage.removeItem('ytc_cosmos_custom_manifest_v1');
+        } catch (err) {}
+        generateUniverseLayout();
+        configModal.classList.add('hidden');
+        configModal.classList.remove('flex');
+        showToast('Đã khôi phục cấu hình ImageKit mặc định (290 ảnh)');
+      });
+
+      document.getElementById('btn-export-manifest').addEventListener('click', () => {
+        const currentManifest = window.YTC_MEDIA_MANIFEST || DEFAULT_MANIFEST;
+        const exportObj = Object.assign({}, currentManifest, {
+          endpoint: appConfig.endpoint,
+          rootPath: appConfig.rootPath,
+          generatedAt: new Date().toISOString()
+        });
+        const content = '/* AUTO-GENERATED. Do not edit manually. */\nwindow.YTC_MEDIA_MANIFEST = ' + JSON.stringify(exportObj, null, 2) + ';\n';
+        const blob = new Blob([content], { type: 'application/javascript;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'images.js';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        showToast('Đã tải xuống file images.js');
+      });
+
+      // Global Keyboard Shortcuts Listener
+      window.addEventListener('keydown', (e) => {
+        // Hidden ImageKit Config Shortcut: Ctrl+Shift+K, Cmd+Shift+K, Alt+K, or F9
+        const isCtrlShiftK = (e.ctrlKey || e.metaKey) && e.shiftKey && e.code === 'KeyK';
+        const isAltK = e.altKey && !e.ctrlKey && !e.metaKey && e.code === 'KeyK';
+        const isF9 = e.key === 'F9';
+
+        if (isCtrlShiftK || isAltK || isF9) {
+          e.preventDefault();
+          toggleImageKitConfigModal();
+          return;
+        }
+
+        // Ignore movement keys when typing in textarea/input
+        const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+        if (tag === 'input' || tag === 'textarea') return;
+
+        if (activeLightboxIndex >= 0) {
+          if (e.key === 'Escape') closeMemoryLightbox();
+          if (e.key === 'ArrowLeft') stepLightbox(-1);
+          if (e.key === 'ArrowRight') stepLightbox(1);
+          return;
+        }
+
+        if (e.key === 'Escape') {
+          configModal.classList.add('hidden');
+          configModal.classList.remove('flex');
+          document.getElementById('guide-modal').classList.add('hidden');
+          document.getElementById('guide-modal').classList.remove('flex');
+        }
+
+        keysPressed[e.code] = true;
+      });
+
+      window.addEventListener('keyup', (e) => {
+        keysPressed[e.code] = false;
+      });
+
+      // --- 12. HUD BUTTON HANDLERS ---
+      document.getElementById('btn-home-core').addEventListener('click', () => {
+        flyTo(0, 0, 0.34);
+        showToast('Đã trở về Tâm Vũ Trụ Ký Ức (0, 0)');
+      });
+
+      document.getElementById('btn-toggle-scatter-mode').addEventListener('click', () => {
+        appConfig.scatterMode = appConfig.scatterMode === 'free4' ? 'sector8' : 'free4';
+        document.getElementById('scatter-mode-label').textContent =
+          appConfig.scatterMode === 'free4' ? 'Phân Rã Ngẫu Nhiên' : '4 Hướng × 8 Năm';
+        saveConfigState();
+        generateUniverseLayout();
+        flyTo(0, 0, 0.22);
+        showToast(
+          appConfig.scatterMode === 'sector8'
+            ? 'Chế độ: Phân mảnh 8 Năm theo 4 Hướng Vũ Trụ'
+            : 'Chế độ: Phân rã ngẫu nhiên tự do khắp 4 Hướng Vũ Trụ'
+        );
+      });
+
+      document.getElementById('btn-rescatter').addEventListener('click', () => {
+        appConfig.seed = Math.floor(Math.random() * 900000) + 100000;
+        saveConfigState();
+        generateUniverseLayout();
+        showToast('Đã phân rã ngẫu nhiên lại vị trí 290 mảnh ký ức khắp vũ trụ!');
+      });
+
+      // document.getElementById('btn-random-warp').addEventListener('click', () => {
+      //   const candidates = memoryNodes.filter(isNodeMatchingFilter);
+      //   if (candidates.length === 0) return;
+      //   const chosen = candidates[Math.floor(Math.random() * candidates.length)];
+      //   flyTo(chosen.x, chosen.y, 0.78, 950);
+      //   showToast(`Đang du hành tới Mảnh Ký Ức #${chosen.serialNumber} (${chosen.yearMeta.label} · ${chosen.directionText})`);
+      // });
+      let autoWarpTimer = null;
+      const randomWarpBtn = document.getElementById('btn-random-warp');
+
+      function stepRandomWarp() {
+        const candidates = memoryNodes.filter(isNodeMatchingFilter);
+        if (candidates.length === 0) return;
+        const chosen = candidates[Math.floor(Math.random() * candidates.length)];
+        flyTo(chosen.x, chosen.y, 0.78, 1100);
+        showToast(`Đang du hành tới Mảnh Ký Ức #${chosen.serialNumber} (${chosen.yearMeta.label} · ${chosen.directionText})`);
+      }
+
+      function stopAutoWarp(showNotification = true) {
+        if (!autoWarpTimer) return;
+        clearInterval(autoWarpTimer);
+        autoWarpTimer = null;
+        randomWarpBtn.classList.remove('active', 'text-rose-300', 'border-rose-400/50');
+        randomWarpBtn.classList.add('text-amber-300', 'border-amber-400/30');
+        const labelSpan = randomWarpBtn.querySelector('span');
+        if (labelSpan) labelSpan.textContent = 'Du Hành Ngẫu Nhiên';
+        if (showNotification) showToast('⏹ Đã dừng Du Hành Ngẫu Nhiên');
+      }
+
+      randomWarpBtn.addEventListener('click', () => {
+        if (autoWarpTimer) {
+          stopAutoWarp(true);
+        } else {
+          randomWarpBtn.classList.remove('text-amber-300', 'border-amber-400/30');
+          randomWarpBtn.classList.add('active', 'text-rose-300', 'border-rose-400/50');
+          const labelSpan = randomWarpBtn.querySelector('span');
+          if (labelSpan) labelSpan.textContent = 'Dừng Du Hành';
+          stepRandomWarp(); // Bay ngay lập tức tới ảnh đầu tiên
+          autoWarpTimer = setInterval(stepRandomWarp, 3200); // Tự động chuyển ảnh mỗi 3.2 giây
+        }
+      });
+
+      // 4-Direction Compass Warp Buttons
+      document.querySelectorAll('.dir-warp-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const dir = btn.getAttribute('data-dir');
+          const target = DIRECTION_TARGETS[dir];
+          if (target) {
+            flyTo(target.x, target.y, target.zoom, 850);
+            showToast(`Đang bay về ${target.label}`);
+          }
+        });
+      });
+
+      // Zoom Controls
+      document.getElementById('btn-zoom-in').addEventListener('click', () => {
+        flyTo(cam.x, cam.y, cam.zoom * 1.32, 300);
+      });
+      document.getElementById('btn-zoom-out').addEventListener('click', () => {
+        flyTo(cam.x, cam.y, cam.zoom / 1.32, 300);
+      });
+      zoomSlider.addEventListener('input', (e) => {
+        cam.flyAnim = null;
+        cam.zoom = parseFloat(e.target.value);
+      });
+      document.getElementById('btn-overview').addEventListener('click', () => {
+        flyTo(0, 0, 0.11, 950);
+        showToast('Toàn cảnh Vũ Trụ Ký Ức 8 Năm');
+      });
+      document.getElementById('btn-toggle-lines').addEventListener('click', () => {
+        appConfig.showConstellations = !appConfig.showConstellations;
+        saveConfigState();
+        showToast(appConfig.showConstellations ? 'Đã bật đường nối Chòm Sao Ký Ức' : 'Đã ẩn đường nối Chòm Sao Ký Ức');
+      });
+
+      // Guide Modal
+      const guideModal = document.getElementById('guide-modal');
+      document.getElementById('btn-open-guide').addEventListener('click', () => {
+        guideModal.classList.remove('hidden');
+        guideModal.classList.add('flex');
+      });
+      document.getElementById('btn-close-guide').addEventListener('click', () => {
+        guideModal.classList.add('hidden');
+        guideModal.classList.remove('flex');
+      });
+      document.getElementById('btn-Confirm-guide').addEventListener('click', () => {
+        guideModal.classList.add('hidden');
+        guideModal.classList.remove('flex');
+      });
+
+      // Toast helper
+      let toastTimer = null;
+      function showToast(msg) {
+        const t = document.getElementById('cosmos-toast');
+        t.textContent = msg;
+        t.classList.remove('opacity-0', '-translate-y-2');
+        t.classList.add('opacity-100', 'translate-y-0');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          t.classList.add('opacity-0', '-translate-y-2');
+          t.classList.remove('opacity-100', 'translate-y-0');
+        }, 2800);
+      }
+
+      // Initialize Universe on Window Load
+      window.addEventListener('load', () => {
+        document.getElementById('scatter-mode-label').textContent =
+          appConfig.scatterMode === 'free4' ? 'Phân Rã Ngẫu Nhiên' : '4 Hướng × 8 Năm';
+        generateUniverseLayout();
+        // Start with a welcoming zoom-in to the Central Hourglass & surrounding large memory cards
+        cam.x = 0;
+        cam.y = 0;
+        cam.zoom = 0.16;
+        setTimeout(() => {
+          flyTo(0, 0, 0.44, 1300);
+        }, 160);
+        requestAnimationFrame(animate);
+      });
+    })();
+  </script>
+</body>
+</html>

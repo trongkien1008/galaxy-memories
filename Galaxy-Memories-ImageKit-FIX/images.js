@@ -1,7 +1,7 @@
 /* AUTO-GENERATED. Do not edit manually. */
 window.YTC_MEDIA_MANIFEST = {
   "version": 5,
-  "generatedAt": "2026-10-19T14:53:56.221Z",
+  "generatedAt": "2026-10-23T12:08:06.955Z",
   "endpoint": "https://ik.imagekit.io/akf",
   "rootPath": "/YTC_Memories",
   "groups": [
@@ -5025,6 +5025,36 @@ window.YTC_MEDIA_MANIFEST = {
       "size": 175439,
       "createdAt": "2026-10-19T12:46:08.115Z",
       "updatedAt": "2026-10-19T12:46:08.845Z",
+      "groupId": "8"
+    },
+    {
+      "id": "6adb4e17ead997d09a92ff7b",
+      "name": "IMG_1792756720377_1792756855485.jpg",
+      "filePath": "/YTC_Memories/8/IMG_1792756720377_1792756855485.jpg",
+      "url": "https://ik.imagekit.io/akf/YTC_Memories/8/IMG_1792756720377_1792756855485.jpg?updatedAt=1792757272000",
+      "thumbUrl": "https://ik.imagekit.io/akf/tr:w-640,q-72/YTC_Memories/8/IMG_1792756720377_1792756855485.jpg",
+      "mimeType": "image/jpeg",
+      "fileType": "image",
+      "width": 2048,
+      "height": 1152,
+      "size": 417736,
+      "createdAt": "2026-10-23T12:07:51.283Z",
+      "updatedAt": "2026-10-23T12:07:52.000Z",
+      "groupId": "8"
+    },
+    {
+      "id": "6adb4e17ead997d09a92ff53",
+      "name": "IMG_20261023_190058.jpg",
+      "filePath": "/YTC_Memories/8/IMG_20261023_190058.jpg",
+      "url": "https://ik.imagekit.io/akf/YTC_Memories/8/IMG_20261023_190058.jpg?updatedAt=1792757271974",
+      "thumbUrl": "https://ik.imagekit.io/akf/tr:w-640,q-72/YTC_Memories/8/IMG_20261023_190058.jpg",
+      "mimeType": "image/jpeg",
+      "fileType": "image",
+      "width": 2048,
+      "height": 1152,
+      "size": 334455,
+      "createdAt": "2026-10-23T12:07:51.245Z",
+      "updatedAt": "2026-10-23T12:07:51.974Z",
       "groupId": "8"
     }
   ]
